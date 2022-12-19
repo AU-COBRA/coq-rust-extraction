@@ -7,3 +7,5 @@ theories/Printing.v
 theories/RustExtract.v
 theories/StringExtra.v
 theories/TopLevelFixes.v
+theories/ExtractExtraction.v
+theories/PluginExtract.v

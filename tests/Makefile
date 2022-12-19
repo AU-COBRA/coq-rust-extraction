@@ -35,12 +35,12 @@ process-extraction-examples: tests
 
 RUST_DIR=./extracted-code/
 
-test-extraction: clean-compiled
+test-extraction: clean-compiled-extraction
 	$(foreach dir, $(wildcard $(RUST_DIR)/*-extracted), cd $(dir) && cargo run && cd ../../;)
 
-clean-compiled:
+clean-compiled-extraction:
 	$(foreach dir, $(wildcard $(RUST_DIR)/*-extracted), rm -f -r $(dir)/target;)
-.PHONY: clean-compiled
+.PHONY: clean-compiled-extraction
 
 clean-extraction-out-files:
 	rm -f $(RUST_DIR)/*.rs.out
@@ -49,6 +49,6 @@ clean-extraction-sources:
 	find $(RUST_DIR) -name 'main.rs' -delete
 .PHONY:clean-extraction-sources
 
-clean-extraction-examples: clean-compiled clean-extraction-out-files clean-extraction-sources
+clean-extraction-examples: clean-compiled-extraction clean-extraction-out-files clean-extraction-sources
 	rm ./thories/*.vo # to force recompilation of examples (a bit ad-hoc though)
-.PHONY: clean-compiled clean-extraction-out-files clean-extraction-sources
+.PHONY: clean-compiled-extraction clean-extraction-out-files clean-extraction-sources

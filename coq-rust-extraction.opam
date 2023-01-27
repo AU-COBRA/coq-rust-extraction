@@ -1,0 +1,31 @@
+opam-version: "2.0"
+name: "coq-rust-extraction"
+version: "dev"
+synopsis: "Coq extraction to Rust"
+description: """
+A framework for extracting Coq programs to Rust
+"""
+maintainer: "Danil Annenkov <danil.v.annenkov@gmail.com>"
+authors: "The COBRA team"
+license: "MIT"
+homepage: "https://github.com/AU-COBRA/coq-rust-extraction"
+dev-repo: "git+https://github.com/AU-COBRA/coq-rust-extraction.git"
+bug-reports: "https://github.com/AU-COBRA/coq-rust-extraction/issues"
+doc: "https://au-cobra.github.io/ConCert/toc.html"
+
+depends: [
+  "coq" {>= "8.16" & < "8.17~"}
+  "coq-metacoq-template" {= "1.1.1+8.16"}
+  "coq-metacoq-pcuic" {= "1.1.1+8.16"}
+  "coq-metacoq-safechecker" {= "1.1.1+8.16"}
+  "coq-metacoq-erasure" {= "1.1.1+8.16"}
+]
+
+build: [
+  [make "plugin"]
+  [make "tests"] {with-test}
+]
+install: [
+  [make "install"]
+  [make "-C" "tests" "install"] {with-test}
+]

@@ -4,11 +4,7 @@ all: theory plugin tests
 CoqMakefile: _CoqProject
 	coq_makefile -f _CoqProject -o CoqMakefile
 
-typed-extraction:
-	+make -C typed-extraction
-.PHONY: typed-extraction
-
-theory: CoqMakefile typed-extraction
+theory: CoqMakefile
 	+@make -f CoqMakefile
 .PHONY: theory
 
@@ -23,20 +19,17 @@ tests: theory plugin
 clean: CoqMakefile
 	+@make -f CoqMakefile clean
 	rm -f CoqMakefile
-	+@make -C typed-extraction clean
 	+@make -C plugin clean
 	+@make -C tests clean
 .PHONY: clean
 
 install: CoqMakefile
 	+@make -f CoqMakefile install
-	+@make -C typed-extraction install
 	+@make -C plugin install
 .PHONY: install
 
 uninstall: CoqMakefile
 	+@make -f CoqMakefile uninstall
-	+@make -C typed-extraction uninstall
 	+@make -C plugin uninstall
 .PHONY: uninstall
 

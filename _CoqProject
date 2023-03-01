@@ -1,5 +1,3 @@
--Q typed-extraction/theories MetaCoq.TypedExtraction
-
 -Q theories ConCert.RustExtract
 theories/Common.v
 theories/PrettyPrinterMonad.v

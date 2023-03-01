@@ -1,4 +1,3 @@
--Q ../typed-extraction/theories MetaCoq.TypedExtraction
 -Q ../theories ConCert.RustExtract
 -Q ../plugin/theories ConCert.RustExtract
 

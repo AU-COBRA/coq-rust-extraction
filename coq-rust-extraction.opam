@@ -19,6 +19,11 @@ depends: [
   "coq-metacoq-pcuic" {= "1.1.1+8.16"}
   "coq-metacoq-safechecker" {= "1.1.1+8.16"}
   "coq-metacoq-erasure" {= "1.1.1+8.16"}
+  "coq-typed-extraction" {dev}
+]
+
+pin-depends: [
+  ["coq-typed-extraction.dev" "git+https://github.com/AU-COBRA/typed-extraction.git#6d4de5d7215226823e2c61cb77f1ff1cab1fc97d"]
 ]
 
 build: [

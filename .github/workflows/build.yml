@@ -41,6 +41,7 @@ jobs:
         echo "::add-matcher::./.github/coq-errors.json"
         echo "::endgroup::"
     - name: Build dependencies
+      run: |
         echo "::group::Setting up switch"
         eval $(opam env --switch=${COMPILER} --set-switch)
         echo "::endgroup::"

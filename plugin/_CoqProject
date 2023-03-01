@@ -1,7 +1,7 @@
--Q ../theories ConCert.RustExtract
+-Q ../theories RustExtraction
 
--Q theories ConCert.RustExtract
--generate-meta-for-package coq-concert-extraction
+-Q theories RustExtraction
+-generate-meta-for-package coq-rust-extraction
 -I src
 
 src/certifyingBeta.ml
@@ -115,8 +115,8 @@ src/vectorDef.mli
 src/wGraph.ml
 src/wGraph.mli
 
-src/g_concert_extraction.mlg
-src/concert_extraction_plugin.mlpack
+src/g_rust_extraction.mlg
+src/rust_extraction_plugin.mlpack
 
 theories/ExtrRustBasic.v
 theories/ExtrRustCheckedArith.v

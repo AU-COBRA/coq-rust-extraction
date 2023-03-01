@@ -1,3 +1,3 @@
 fn main() {
-  println!("{:?}", Program::new().ConCert_RustExtract_Test_InternalFix_even()(42))
+  println!("{:?}", Program::new().RustExtraction_Test_InternalFix_even()(42))
 }

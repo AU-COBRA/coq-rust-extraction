@@ -10,10 +10,10 @@ From Coq Require Import Ascii.
 From Coq Require Import String.
 From Coq Require Import List.
 From Coq.Program Require Import Basics.
-From ConCert.RustExtract Require Import Printing.
-From ConCert.RustExtract Require Import TopLevelFixes.
-From ConCert.RustExtract Require Import StringExtra.
-From ConCert.RustExtract Require Import PrettyPrinterMonad.
+From RustExtraction Require Import Printing.
+From RustExtraction Require Import TopLevelFixes.
+From RustExtraction Require Import StringExtra.
+From RustExtraction Require Import PrettyPrinterMonad.
 
 Module P := MetaCoq.PCUIC.PCUICAst.
 Module PT := MetaCoq.PCUIC.PCUICTyping.

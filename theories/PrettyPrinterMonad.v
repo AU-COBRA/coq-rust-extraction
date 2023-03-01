@@ -5,7 +5,7 @@ From MetaCoq.Template Require Import monad_utils.
 From MetaCoq.SafeChecker Require Import PCUICErrors.
 From MetaCoq.TypedExtraction Require Import Utils.
 From MetaCoq.TypedExtraction Require Import ResultMonad.
-From ConCert.RustExtract Require Import Common.
+From RustExtraction Require Import Common.
 
 Import monad_utils.MCMonadNotation.
 Import ListNotations.

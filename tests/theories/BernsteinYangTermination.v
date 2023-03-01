@@ -1,6 +1,6 @@
 (* Computation needed to show termination of the Bernstein-Yang modular inversion algorithm *)
 
-From ConCert.RustExtract Require Import Loader.
+From RustExtraction Require Import Loader.
 From Coq Require Import Bool.
 From Coq Require Import ZArith.
 
@@ -43,6 +43,6 @@ Extract Constant nat_shiftl => "fn ##name##(&'a self, a: u64, b: u64) -> u64 { a
 Extract Constant shiftl => "fn ##name##(&'a self, a: i64, b: i64) -> i64 { a << b }".
 Extract Constant shiftr => "fn ##name##(&'a self, a: i64, b: i64) -> i64 { a >> b }".
 
-From ConCert.RustExtract Require Import ExtrRustBasic.
-From ConCert.RustExtract Require Import ExtrRustUncheckedArith.
-Redirect "extracted-code/BernsteinYangTermination.rs" ConCert Extract W.
+From RustExtraction Require Import ExtrRustBasic.
+From RustExtraction Require Import ExtrRustUncheckedArith.
+Redirect "extracted-code/BernsteinYangTermination.rs" Rust Extract W.

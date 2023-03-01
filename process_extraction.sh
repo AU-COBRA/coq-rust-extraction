@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ ! -f "plugin/src/concert_extraction_plugin.cmxs" ||
-      "plugin/src/concert_extraction_plugin.cmxs" -ot "theories/ExtractExtraction.vo" ]]
+if [[ ! -f "plugin/src/rust_extraction_plugin.cmxs" ||
+      "plugin/src/rust_extraction_plugin.cmxs" -ot "theories/ExtractExtraction.vo" ]]
 then
   cd plugin/src
   # Uncapitalize modules to circumvent a bug of coqdep with mlpack files

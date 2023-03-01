@@ -1,3 +1,3 @@
 fn main() {
-  println!("{:?}", Program::new().ConCert_RustExtract_Test_BernsteinYangTermination_W(10))
+  println!("{:?}", Program::new().RustExtraction_Test_BernsteinYangTermination_W(10))
 }

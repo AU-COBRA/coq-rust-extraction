@@ -46,8 +46,9 @@ jobs:
         eval $(opam env --switch=${COMPILER} --set-switch)
         echo "::endgroup::"
 
-        echo "::group::Build Typed Extraction"
-        opam pin add -y coq-typed-extraction https://github.com/AU-COBRA/typed-extraction.git#6d4de5d7215226823e2c61cb77f1ff1cab1fc97d
+        echo "::group::Build MetaCoq"
+        opam remove -y coq-metacoq-erasure coq-metacoq-pcuic coq-metacoq-safechecker coq-metacoq-template
+        opam install -y --deps-only .
         echo "::endgroup::"
     - name: Build core
       run: |

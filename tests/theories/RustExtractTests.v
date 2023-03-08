@@ -1,12 +1,12 @@
 (** * Tests for extraction to Rust *)
-From MetaCoq.TypedExtraction Require Import Extraction.
-From MetaCoq.TypedExtraction Require Import ResultMonad.
+From MetaCoq.Erasure.Typed Require Import Extraction.
+From MetaCoq.Erasure.Typed Require Import ResultMonad.
 From RustExtraction Require Import RustExtract.
 From RustExtraction Require Import Printing.
 From RustExtraction Require Import StringExtra.
 From MetaCoq.Template Require Import Ast.
-From MetaCoq.Template Require Import Kernames.
-From MetaCoq Require Import utils.
+From MetaCoq.Common Require Import Kernames.
+From MetaCoq.Utils Require Import utils.
 From Coq Require Import String.
 
 Import PrettyPrinterMonad.

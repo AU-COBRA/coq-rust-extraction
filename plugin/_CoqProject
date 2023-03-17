@@ -2,7 +2,6 @@
 -Q ../theories ConCert.RustExtract
 
 -Q theories ConCert.RustExtract
--generate-meta-for-package coq-concert-extraction
 -I src
 
 src/certifyingBeta.ml

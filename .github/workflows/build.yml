@@ -16,72 +16,72 @@ on:
     - 'LICENSE'
 permissions:
   contents: read
+env:
+  OCAML_COMILER_VERSION: "4.13.1"
+  JOBS: 2
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: aucobra/concert:deps-8.16.1
-      options: --user root
+    permissions:
+      contents: write
     steps:
-    - name: Checkout branch ${{ github.ref_name }}
-      uses: actions/checkout@v3
-    - name: Setup environment
-      run: |
-        echo "::group::Setting up switch"
-        echo "HOME=/home/coq" >> $GITHUB_ENV
-        export HOME=/home/coq
-        echo "/home/coq/.cargo/bin" >> $GITHUB_PATH
-        PATH=/home/coq/.cargo/bin:$PATH
-        eval $(opam env --switch=${COMPILER} --set-switch)
-        env
-        opam switch
-        echo "::endgroup::"
+      - name: Checkout branch ${{ github.ref_name }}
+        uses: actions/checkout@v3
 
-        echo "::group::Setting up problem matcher"
-        echo "::add-matcher::./.github/coq-errors.json"
-        echo "::endgroup::"
-    - name: Build dependencies
-      run: |
-        echo "::group::Setting up switch"
-        eval $(opam env --switch=${COMPILER} --set-switch)
-        echo "::endgroup::"
+      - name: Restore opam cache
+        id: opam-cache
+        uses: actions/cache@v3
+        with:
+          path: "~/.opam"
+          key: opam-${{env.OCAML_COMILER_VERSION}}-${{hashFiles('.github/deps.opam.locked')}}
+          restore-keys: |
+            opam-${{env.OCAML_COMILER_VERSION}}-
 
-        echo "::group::Build MetaCoq"
-        opam remove -y coq-metacoq-erasure coq-metacoq-pcuic coq-metacoq-safechecker coq-metacoq-template
-        opam install -y --deps-only .
-        echo "::endgroup::"
-    - name: Build core
-      run: |
-        echo "::group::Setting up switch"
-        eval $(opam env --switch=${COMPILER} --set-switch)
-        echo "::endgroup::"
+      - name: Set up OCaml
+        uses: avsm/setup-ocaml@v1
+        with:
+          ocaml-version: ${{env.OCAML_COMILER_VERSION}}
 
-        echo "::group::Build Core"
-        make -j2 theory
-        echo "::endgroup::"
+      - name: Build dependencies
+        #if: ${{ !steps.opam-cache.outputs.cache-hit }}
+        run: |
+          opam repo add coq-released https://coq.inria.fr/opam/released
+          opam install --deps-only -j${{ env.JOBS }} .github/deps.opam.locked
+          opam clean -a -c -s --logs
 
-        echo "::group::Build Plugin"
-        make -j2 plugin
-        echo "::endgroup::"
-    - name: Build tests
-      run: |
-        echo "::group::Setting up switch"
-        eval $(opam env --switch=${COMPILER} --set-switch)
-        echo "::endgroup::"
+      - name: Set up environment
+        run: |
+          echo "::group::Setting up problem matcher"
+          echo "::add-matcher::./.github/coq-errors.json"
+          echo "::endgroup::"
 
-        echo "::group::Build tests"
-        make -j2 tests
-        echo "::endgroup::"
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-    - name: Test extraction
-      run: |
-        echo "::group::Running tests"
-        make -j2 -C tests test-extraction
-        echo "::endgroup::"
+      - name: Build core
+        run: |
+          echo "::group::Build Core"
+          opam exec -- make -j${{ env.JOBS }} theory
+          echo "::endgroup::"
 
-        echo "::group::Cleaning up"
-        make -j2 -C tests clean-extraction-out-files
-        make -j2 -C tests clean-compiled-extraction
-        echo "::endgroup::"
+          echo "::group::Build Plugin"
+          opam exec -- make -j${{ env.JOBS }} plugin
+          echo "::endgroup::"
+
+      - name: Build tests
+        run: |
+          echo "::group::Build tests"
+          opam exec -- make -j${{ env.JOBS }} tests
+          echo "::endgroup::"
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Test extraction
+        run: |
+          echo "::group::Running tests"
+          make -j2 -C tests test-extraction
+          echo "::endgroup::"
+
+          echo "::group::Cleaning up"
+          make -j2 -C tests clean-extraction-out-files
+          make -j2 -C tests clean-compiled-extraction
+          echo "::endgroup::"

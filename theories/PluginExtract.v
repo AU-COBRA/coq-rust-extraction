@@ -1,14 +1,14 @@
 (** * Definitions below are used in the extracted plugin *)
 
-From MetaCoq.TypedExtraction Require Import ExAst.
-From MetaCoq.TypedExtraction Require Import Extraction.
-From MetaCoq.TypedExtraction Require Import ResultMonad.
-From MetaCoq.TypedExtraction Require Import Utils.
-From ConCert.RustExtract Require Import PrettyPrinterMonad.
-From ConCert.RustExtract Require Import Printing.
-From ConCert.RustExtract Require Import RustExtract.
-From MetaCoq.Template Require Import Kernames.
-From MetaCoq.Template Require Import monad_utils.
+From MetaCoq.Erasure.Typed Require Import ExAst.
+From MetaCoq.Erasure.Typed Require Import Extraction.
+From MetaCoq.Erasure.Typed Require Import ResultMonad.
+From MetaCoq.Erasure.Typed Require Import Utils.
+From RustExtraction Require Import PrettyPrinterMonad.
+From RustExtraction Require Import Printing.
+From RustExtraction Require Import RustExtract.
+From MetaCoq.Common Require Import Kernames.
+From MetaCoq.Utils Require Import monad_utils.
 From Coq Require Import List.
 From Coq Require Import String.
 

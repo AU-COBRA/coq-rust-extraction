@@ -1,4 +1,4 @@
-DECLARE PLUGIN "coq-concert-extraction.plugin"
+DECLARE PLUGIN "coq-rust-extraction.plugin"
 
 {
 
@@ -110,8 +110,8 @@ let check env evm c =
 
 }
 
-VERNAC COMMAND EXTEND ConCertExtract CLASSIFIED AS QUERY
-| [ "ConCert" "Extract" constr(c) ] -> {
+VERNAC COMMAND EXTEND RustExtract CLASSIFIED AS QUERY
+| [ "Rust" "Extract" constr(c) ] -> {
     let env = Global.env () in
     let evm = Evd.from_env env in
     let (c, _) = Constrintern.interp_constr env evm c in

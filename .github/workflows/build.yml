@@ -25,8 +25,6 @@ jobs:
     steps:
     - name: Checkout branch ${{ github.ref_name }}
       uses: actions/checkout@v3
-      with:
-        submodules: recursive
     - name: Setup environment
       run: |
         echo "::group::Setting up switch"
@@ -42,14 +40,20 @@ jobs:
         echo "::group::Setting up problem matcher"
         echo "::add-matcher::./.github/coq-errors.json"
         echo "::endgroup::"
-    - name: Build core
+    - name: Build dependencies
       run: |
         echo "::group::Setting up switch"
         eval $(opam env --switch=${COMPILER} --set-switch)
         echo "::endgroup::"
 
-        echo "::group::Build Typed Extraction"
-        make -j2 typed-extraction
+        echo "::group::Build MetaCoq"
+        opam remove -y coq-metacoq-erasure coq-metacoq-pcuic coq-metacoq-safechecker coq-metacoq-template
+        opam install -y --deps-only .
+        echo "::endgroup::"
+    - name: Build core
+      run: |
+        echo "::group::Setting up switch"
+        eval $(opam env --switch=${COMPILER} --set-switch)
         echo "::endgroup::"
 
         echo "::group::Build Core"

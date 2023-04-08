@@ -1,28 +1,28 @@
-From MetaCoq.Template Require Import monad_utils.
-From MetaCoq.Template Require Import MCList.
-From MetaCoq.TypedExtraction Require Import ExAst.
-From MetaCoq.TypedExtraction Require Import Extraction.
-From MetaCoq.TypedExtraction Require Import CertifyingInlining.
-From MetaCoq.TypedExtraction Require Import Optimize.
-From MetaCoq.TypedExtraction Require Import ResultMonad.
+From MetaCoq.Utils Require Import monad_utils.
+From MetaCoq.Utils Require Import MCList.
+From MetaCoq.Erasure.Typed Require Import ExAst.
+From MetaCoq.Erasure.Typed Require Import Extraction.
+From MetaCoq.Erasure.Typed Require Import CertifyingInlining.
+From MetaCoq.Erasure.Typed Require Import Optimize.
+From MetaCoq.Erasure.Typed Require Import ResultMonad.
 From Coq Require Import PeanoNat.
 From Coq Require Import Ascii.
 From Coq Require Import String.
 From Coq Require Import List.
 From Coq.Program Require Import Basics.
-From ConCert.RustExtract Require Import Printing.
-From ConCert.RustExtract Require Import TopLevelFixes.
-From ConCert.RustExtract Require Import StringExtra.
-From ConCert.RustExtract Require Import PrettyPrinterMonad.
+From RustExtraction Require Import Printing.
+From RustExtraction Require Import TopLevelFixes.
+From RustExtraction Require Import StringExtra.
+From RustExtraction Require Import PrettyPrinterMonad.
 
 Module P := MetaCoq.PCUIC.PCUICAst.
 Module PT := MetaCoq.PCUIC.PCUICTyping.
-Module T2P := MetaCoq.PCUIC.TemplateToPCUIC.
+Module T2P := MetaCoq.TemplatePCUIC.TemplateToPCUIC.
 Module E := MetaCoq.Erasure.EAst.
 Module T := MetaCoq.Template.Ast.
 Module TUtil := MetaCoq.Template.AstUtils.
 Module EF := MetaCoq.Erasure.ErasureFunction.
-Module Ex := MetaCoq.TypedExtraction.ExAst.
+Module Ex := MetaCoq.Erasure.Typed.ExAst.
 
 Local Open Scope string.
 

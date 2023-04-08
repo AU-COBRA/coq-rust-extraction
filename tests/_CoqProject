@@ -1,8 +1,7 @@
--Q ../typed-extraction/theories MetaCoq.TypedExtraction
--Q ../theories ConCert.RustExtract
--Q ../plugin/theories ConCert.RustExtract
+-Q ../theories RustExtraction
+-Q ../plugin/theories RustExtraction
 
--Q theories ConCert.RustExtract.Test
+-Q theories RustExtraction.Test
 -I ../plugin/src
 theories/BernsteinYangTermination.v
 theories/InternalFix.v

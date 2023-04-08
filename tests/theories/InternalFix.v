@@ -1,5 +1,5 @@
 (** Examples of (mutual) nested fixpoints *)
-From ConCert.RustExtract Require Import Loader.
+From RustExtraction Require Import Loader.
 From Coq Require Import Arith.
 From Coq Require Import Bool.
 From Coq Require Import Extraction.
@@ -32,8 +32,8 @@ Fixpoint even n :=
 
 Definition even_odd (n : nat) : bool := even n.
 
-From ConCert.RustExtract Require Import ExtrRustBasic.
-From ConCert.RustExtract Require Import ExtrRustUncheckedArith.
+From RustExtraction Require Import ExtrRustBasic.
+From RustExtraction Require Import ExtrRustUncheckedArith.
 
-Redirect "extracted-code/Ack.rs" ConCert Extract ack.
-Redirect "extracted-code/Even.rs" ConCert Extract even.
+Redirect "extracted-code/Ack.rs" Rust Extract ack.
+Redirect "extracted-code/Even.rs" Rust Extract even.

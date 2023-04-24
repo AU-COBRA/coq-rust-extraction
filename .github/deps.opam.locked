@@ -11,14 +11,14 @@ doc: "https://au-cobra.github.io/ConCert/toc.html"
 bug-reports: "https://github.com/AU-COBRA/coq-rust-extraction/issues"
 dev-repo: "git+https://github.com/AU-COBRA/coq-rust-extraction.git"
 depends: [
-  "coq" {= "8.16.1"}
-  "coq-metacoq-common" {= "1.2+8.16"}
-  "coq-metacoq-erasure" {= "1.2+8.16"}
-  "coq-metacoq-pcuic" {= "1.2+8.16"}
-  "coq-metacoq-safechecker" {= "1.2+8.16"}
-  "coq-metacoq-template" {= "1.2+8.16"}
-  "coq-metacoq-template-pcuic" {= "1.2+8.16"}
-  "coq-metacoq-utils" {= "1.2+8.16"}
+  "coq" {= "8.17.0"}
+  "coq-metacoq-common" {= "1.2+8.17"}
+  "coq-metacoq-erasure" {= "1.2+8.17"}
+  "coq-metacoq-pcuic" {= "1.2+8.17"}
+  "coq-metacoq-safechecker" {= "1.2+8.17"}
+  "coq-metacoq-template" {= "1.2+8.17"}
+  "coq-metacoq-template-pcuic" {= "1.2+8.17"}
+  "coq-metacoq-utils" {= "1.2+8.17"}
 ]
 build: [
   [make "plugin"]

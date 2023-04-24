@@ -19,6 +19,8 @@ Makefile.coq.conf
 *.cmx
 *.cmxa
 *.cmxs
+*.cmt
+*.cmti
 *.ml.d
 *.mllib.d
 *.ml4.d

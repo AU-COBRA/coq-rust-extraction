@@ -9,15 +9,16 @@ license: "MIT"
 homepage: "https://github.com/AU-COBRA/coq-rust-extraction"
 doc: "https://au-cobra.github.io/ConCert/toc.html"
 bug-reports: "https://github.com/AU-COBRA/coq-rust-extraction/issues"
+dev-repo: "git+https://github.com/AU-COBRA/coq-rust-extraction.git"
 depends: [
   "coq" {= "8.16.1"}
-  "coq-metacoq-common" {= "8.16.dev"}
-  "coq-metacoq-erasure" {= "8.16.dev"}
-  "coq-metacoq-pcuic" {= "8.16.dev"}
-  "coq-metacoq-safechecker" {= "8.16.dev"}
-  "coq-metacoq-template" {= "8.16.dev"}
-  "coq-metacoq-template-pcuic" {= "8.16.dev"}
-  "coq-metacoq-utils" {= "8.16.dev"}
+  "coq-metacoq-common" {= "1.2+8.16"}
+  "coq-metacoq-erasure" {= "1.2+8.16"}
+  "coq-metacoq-pcuic" {= "1.2+8.16"}
+  "coq-metacoq-safechecker" {= "1.2+8.16"}
+  "coq-metacoq-template" {= "1.2+8.16"}
+  "coq-metacoq-template-pcuic" {= "1.2+8.16"}
+  "coq-metacoq-utils" {= "1.2+8.16"}
 ]
 build: [
   [make "plugin"]
@@ -26,35 +27,4 @@ build: [
 install: [
   [make "install"]
   [make "-C" "tests" "install"] {with-test}
-]
-dev-repo: "git+https://github.com/AU-COBRA/coq-rust-extraction.git"
-pin-depends: [
-  [
-    "coq-metacoq-common.8.16.dev"
-    "git+https://github.com/MetaCoq/metacoq.git#b96e7570a5e7fd959fe171d63398f4491fed338a"
-  ]
-  [
-    "coq-metacoq-erasure.8.16.dev"
-    "git+https://github.com/MetaCoq/metacoq.git#b96e7570a5e7fd959fe171d63398f4491fed338a"
-  ]
-  [
-    "coq-metacoq-pcuic.8.16.dev"
-    "git+https://github.com/MetaCoq/metacoq.git#b96e7570a5e7fd959fe171d63398f4491fed338a"
-  ]
-  [
-    "coq-metacoq-safechecker.8.16.dev"
-    "git+https://github.com/MetaCoq/metacoq.git#b96e7570a5e7fd959fe171d63398f4491fed338a"
-  ]
-  [
-    "coq-metacoq-template.8.16.dev"
-    "git+https://github.com/MetaCoq/metacoq.git#b96e7570a5e7fd959fe171d63398f4491fed338a"
-  ]
-  [
-    "coq-metacoq-template-pcuic.8.16.dev"
-    "git+https://github.com/MetaCoq/metacoq.git#b96e7570a5e7fd959fe171d63398f4491fed338a"
-  ]
-  [
-    "coq-metacoq-utils.8.16.dev"
-    "git+https://github.com/MetaCoq/metacoq.git#b96e7570a5e7fd959fe171d63398f4491fed338a"
-  ]
 ]

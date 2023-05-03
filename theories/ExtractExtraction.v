@@ -17,7 +17,7 @@ Set Warnings "-extraction-opaque-accessed".
 Set Warnings "-extraction-reserved-identifier".
 
 From MetaCoq.Erasure Require Import EAst EAstUtils EInduction ELiftSubst EGlobalEnv Extract ErasureFunction Erasure.
-From ConCert.Extraction Require Import PluginExtract.
+From ConCert.RustExtract Require Import PluginExtract.
 From MetaCoq.TypedExtraction Require Import Utils.
 
 
@@ -52,6 +52,6 @@ bytestrings from MetaCoq that leads to clashes. E.g. we cannot use
 Cd "plugin/src".
 Separate Extraction PluginExtract.extract
          (* The following directives ensure separate extraction does not produce name clashes *)
-          Bool Nat Coq.Strings.String bytestring.String Extraction.Common TemplateMonad.Common utils ELiftSubst EGlobalEnv Template.Transform ResultMonad.
+          Bool Nat Coq.Strings.String bytestring.String RustExtract.Common TemplateMonad.Common utils ELiftSubst EGlobalEnv Template.Transform ResultMonad PCUICPretty.
          (* Bool Nat Coq.Strings.String Common utils ELiftSubst EGlobalEnv PCUICLiftSubst PCUICUnivSubst ResultMonad SafeTemplateChecker. *)
 Cd "../..".

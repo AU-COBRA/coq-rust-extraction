@@ -5,15 +5,15 @@ From MetaCoq.TypedExtraction Require Import Extraction.
 From MetaCoq.TypedExtraction Require Import CertifyingInlining.
 From MetaCoq.TypedExtraction Require Import Optimize.
 From MetaCoq.TypedExtraction Require Import ResultMonad.
-From ConCert.Extraction Require Import Printing.
-From ConCert.Extraction Require Import TopLevelFixes.
 From Coq Require Import PeanoNat.
 From Coq Require Import Ascii.
 From Coq Require Import String.
 From Coq Require Import List.
 From Coq.Program Require Import Basics.
-From ConCert.Utils Require Import StringExtra.
-From ConCert.Extraction Require Import PrettyPrinterMonad.
+From ConCert.RustExtract Require Import Printing.
+From ConCert.RustExtract Require Import TopLevelFixes.
+From ConCert.RustExtract Require Import StringExtra.
+From ConCert.RustExtract Require Import PrettyPrinterMonad.
 
 Module P := MetaCoq.PCUIC.PCUICAst.
 Module PT := MetaCoq.PCUIC.PCUICTyping.

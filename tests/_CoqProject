@@ -1,0 +1,9 @@
+-Q ../typed-extraction/theories MetaCoq.TypedExtraction
+-Q ../theories ConCert.RustExtract
+-Q ../plugin/theories ConCert.RustExtract
+
+-Q theories ConCert.RustExtract.Test
+-I ../plugin/src
+theories/BernsteinYangTermination.v
+theories/InternalFix.v
+theories/RustExtractTests.v

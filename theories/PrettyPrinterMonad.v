@@ -3,8 +3,9 @@ From Coq Require Import Ascii.
 From Coq Require Import String.
 From MetaCoq.Template Require Import monad_utils.
 From MetaCoq.SafeChecker Require Import PCUICErrors.
+From MetaCoq.TypedExtraction Require Import Utils.
 From MetaCoq.TypedExtraction Require Import ResultMonad.
-From ConCert.Extraction Require Import Common.
+From ConCert.RustExtract Require Import Common.
 
 Import monad_utils.MCMonadNotation.
 Import ListNotations.
@@ -25,7 +26,8 @@ Notation s_to_bs := bytestring.String.of_string.
 
 Local Coercion bs_to_s : bytestring.string >-> string.
 
-Definition PrettyPrinter A := PrettyPrinterState -> result (A * PrettyPrinterState) string.
+Definition PrettyPrinter A :=
+  PrettyPrinterState -> result (A * PrettyPrinterState) string.
 
 #[export]
 Instance Monad_PrettyPrinter : Monad PrettyPrinter :=

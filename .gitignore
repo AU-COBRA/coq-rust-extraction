@@ -1,5 +1,17 @@
-.*.aux
-.*.d
+.hidden
+*.tmp
+
+##Coq
+*.vo
+*.vok
+*.vos
+*.glob
+*.v.d
+*~
+CoqMakefile
+CoqMakefile.conf
+Makefile.coq
+Makefile.coq.conf
 *.a
 *.cma
 *.cmi
@@ -7,19 +19,22 @@
 *.cmx
 *.cmxa
 *.cmxs
-*.glob
 *.ml.d
+*.mllib.d
 *.ml4.d
 *.mli.d
-*.mllib.d
 *.mlpack.d
 *.native
 *.o
-*.v.d
-*.vio
-*.vo
-*.vok
-*.vos
+*.aux
+*.d
+*.lia.cache
+doc/
+docs/
+_opam/
+.merlin
+META.*
+
 .coq-native/
 .csdp.cache
 .lia.cache
@@ -31,3 +46,20 @@ lia.cache
 nia.cache
 nlia.cache
 nra.cache
+
+## extraction output
+*.rs
+*.out
+
+
+## Editors
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history

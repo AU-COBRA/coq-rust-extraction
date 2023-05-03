@@ -4,9 +4,9 @@ From MetaCoq.TypedExtraction Require Import ExAst.
 From MetaCoq.TypedExtraction Require Import Extraction.
 From MetaCoq.TypedExtraction Require Import ResultMonad.
 From MetaCoq.TypedExtraction Require Import Utils.
-From ConCert.Extraction Require Import PrettyPrinterMonad.
-From ConCert.Extraction Require Import Printing.
-From ConCert.Extraction Require Import RustExtract.
+From ConCert.RustExtract Require Import PrettyPrinterMonad.
+From ConCert.RustExtract Require Import Printing.
+From ConCert.RustExtract Require Import RustExtract.
 From MetaCoq.Template Require Import Kernames.
 From MetaCoq.Template Require Import monad_utils.
 From Coq Require Import List.

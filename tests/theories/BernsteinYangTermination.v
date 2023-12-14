@@ -6,6 +6,7 @@ From Coq Require Import ZArith.
 
 Import Z.
 Local Open Scope Z.
+Definition odd := Z.odd.
 Definition steps := Eval vm_compute in 2 ^ 44 : N.
 Definition shiftl a b := Eval cbv in Z.shiftl a b.
 Definition shiftr a b := Eval cbv in Z.shiftr a b.
@@ -32,7 +33,7 @@ Fixpoint min_needs_n_steps_nat (a b : Z) n (acc : Z) fuel :=
           if acc <? length
              then min_needs_n_steps_nat (a + 2) 0 n acc fuel
              else if needs_n_steps 1 a (shiftr b 1) n || needs_n_steps 1 a (- (shiftr b 1)) n
-                  then min_needs_n_steps_nat (a + 2) 0 n (min length acc) fuel
+                  then min_needs_n_steps_nat (a + 2) 0 n (Z.min length acc) fuel
                   else min_needs_n_steps_nat a (b + 2) n acc fuel
   end.
 Definition nat_shiftl := Eval cbv in Nat.shiftl.

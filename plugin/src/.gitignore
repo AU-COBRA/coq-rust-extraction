@@ -8,6 +8,8 @@ closedAux.ml
 closedAux.mli
 common1.ml
 common1.mli
+decidableClass.ml
+decidableClass.mli
 decimalString.ml
 decimalString.mli
 init0.ml

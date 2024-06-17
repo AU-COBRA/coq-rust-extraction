@@ -13,6 +13,7 @@ OrderedTypeAlt
 Kernames
 Reflect
 MCProd
+Show
 
 PCUICPrimitive
 PCUICAst
@@ -39,6 +40,7 @@ FloatOps
 SpecFloat
 TemplateToPCUIC
 
+EPrimitive
 EAst
 EEnvMap
 ECSubst

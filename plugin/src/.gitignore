@@ -30,6 +30,8 @@ eOptimizePropDiscr.ml
 eOptimizePropDiscr.mli
 ePretty.ml
 ePretty.mli
+ePrimitive.ml
+ePrimitive.mli
 eTyping.ml
 eTyping.mli
 environmentTyping.ml
@@ -143,6 +145,8 @@ safeTemplateChecker.ml
 safeTemplateChecker.mli
 specFloat.ml
 specFloat.mli
+show.ml
+show.mli
 ssrbool.ml
 ssrbool.mli
 stringExtra.ml

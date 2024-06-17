@@ -30,6 +30,8 @@ src/eOptimizePropDiscr.ml
 src/eOptimizePropDiscr.mli
 src/ePretty.ml
 src/ePretty.mli
+src/ePrimitive.ml
+src/ePrimitive.mli
 src/erasure.ml
 src/erasure.mli
 src/exAst.ml
@@ -88,6 +90,8 @@ src/pluginExtract.ml
 src/pluginExtract.mli
 src/erasureFunction.ml
 src/erasureFunction.mli
+src/show.ml
+src/show.mli
 src/ssrbool.ml
 src/ssrbool.mli
 src/stringExtra.ml

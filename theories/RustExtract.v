@@ -603,6 +603,8 @@ Fixpoint print_term (Γ : list ident) (t : term) {struct t} : PrettyPrinter unit
 
   | tCoFix _ _ => printer_fail "Cannot handle tCoFix yet"
   | tPrim _ => printer_fail "Cannot handle Coq primitive types yet"
+  | tLazy _ => printer_fail "Cannot handle lazy yet"
+  | tForce _ => printer_fail "Cannot handle force yet"
   end.
 
 Definition print_constant

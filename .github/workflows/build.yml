@@ -72,6 +72,13 @@ jobs:
           opam exec -- make -j${{ env.JOBS }} tests
           echo "::endgroup::"
 
+      - name: Build documentation
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          echo "::group::Running coqdoc"
+          opam exec -- make -j${{ env.JOBS }} html
+          echo "::endgroup::"
+
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
@@ -86,3 +93,24 @@ jobs:
           make -j2 -C tests clean-extraction-out-files
           make -j2 -C tests clean-compiled-extraction
           echo "::endgroup::"
+
+      - name: Prepare documentation for deployment
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy-docs:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

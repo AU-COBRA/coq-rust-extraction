@@ -72,12 +72,38 @@ jobs:
           opam exec -- make -j${{ env.JOBS }} tests
           echo "::endgroup::"
 
+      - name: Upload extraction results
+        uses: actions/upload-artifact@v4
+        with:
+          name: extraction-results
+          path: tests/extracted-code
+          retention-days: 2
+
       - name: Build documentation
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
           echo "::group::Running coqdoc"
           opam exec -- make -j${{ env.JOBS }} html
           echo "::endgroup::"
+
+      - name: Prepare documentation for deployment
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch ${{ github.ref_name }}
+        uses: actions/checkout@v4
+
+      - name: Download extraction results
+        uses: actions/download-artifact@v4
+        with:
+          name: extraction-results
+          path: tests/extracted-code
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -93,12 +119,6 @@ jobs:
           make -j2 -C tests clean-extraction-out-files
           make -j2 -C tests clean-compiled-extraction
           echo "::endgroup::"
-
-      - name: Prepare documentation for deployment
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
 
   deploy-docs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'

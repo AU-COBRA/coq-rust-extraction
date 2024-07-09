@@ -36,6 +36,7 @@ docs/
 _opam/
 .merlin
 META.*
+META
 
 .coq-native/
 .csdp.cache

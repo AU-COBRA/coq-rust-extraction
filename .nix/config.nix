@@ -4,82 +4,13 @@
   ## unless you made an automated or manual update
   ## to another supported format.
 
-  ## The attribute to build from the local sources,
-  ## either using nixpkgs data or the overlays located in `.nix/coq-overlays`
-  ## Will determine the default main-job of the bundles defined below
   attribute = "rust-extraction";
 
-  ## If you want to select a different attribute (to build from the local sources as well)
-  ## when calling `nix-shell` and `nix-build` without the `--argstr job` argument
-  # shell-attribute = "{{nix_name}}";
-
-  ## Maybe the shortname of the library is different from
-  ## the name of the nixpkgs attribute, if so, set it here:
-  # pname = "rust-extraction";
-
-  ## Lists the dependencies, phrased in terms of nix attributes.
-  ## No need to list Coq, it is already included.
-  ## These dependencies will systematically be added to the currently
-  ## known dependencies, if any more than Coq.
-  ## /!\ Remove this field as soon as the package is available on nixpkgs.
-  ## /!\ Manual overlays in `.nix/coq-overlays` should be preferred then.
-  # buildInputs = with coqPackages; [ metacoq ];
-
-  ## Indicate the relative location of your _CoqProject
-  ## If not specified, it defaults to "_CoqProject"
-  # coqproject = "_CoqProject";
-
-  ## select an entry to build in the following `bundles` set
-  ## defaults to "default"
   default-bundle = "8.17";
 
-  ## write one `bundles.name` attribute set per
-  ## alternative configuration
-  ## When generating GitHub Action CI, one workflow file
-  ## will be created per bundle
   bundles."8.17" = {
-
-    ## You can override Coq and other Coq coqPackages
-    ## through the following attribute
     coqPackages.coq.override.version = "8.17";
     coqPackages.metacoq.override.version = "1.3.1-8.17";
-
-    ## In some cases, light overrides are not available/enough
-    ## in which case you can use either
-    # coqPackages.<coq-pkg>.overrideAttrs = o: <overrides>;
-    ## or a "long" overlay to put in `.nix/coq-overlays
-    ## you may use `nix-shell --run fetchOverlay <coq-pkg>`
-    ## to automatically retrieve the one from nixpkgs
-    ## if it exists and is correctly named/located
-
-    ## You can override Coq and other coqPackages
-    ## through the following attribute
-    ## If <ocaml-pkg> does not support light overrides,
-    ## you may use `overrideAttrs` or long overlays
-    ## located in `.nix/ocaml-overlays`
-    ## (there is no automation for this one)
-    #  ocamlPackages.<ocaml-pkg>.override.version = "x.xx";
-
-    ## You can also override packages from the nixpkgs toplevel
-    # <nix-pkg>.override.overrideAttrs = o: <overrides>;
-    ## Or put an overlay in `.nix/overlays`
-
-    ## you may mark a package as a main CI job (one to take deps and
-    ## rev deps from) as follows
-    # coqPackages.<main-pkg>.main-job = true;
-    ## by default the current package and its shell attributes are main jobs
-
-    ## you may mark a package as a CI job as follows
-    #  coqPackages.<another-pkg>.job = "test";
-    ## It can then built through
-    ## nix-build --argstr bundle "default" --arg job "test";
-    ## in the absence of such a directive, the job "another-pkg" will
-    ## is still available, but will be automatically included in the CI
-    ## via the command genNixActions only if it is a dependency or a
-    ## reverse dependency of a job flagged as "main-job" (see above).
-
-    ## Run on push on following branches (default [ "master" ])
-    # push-branches = [ "master" "branch2" ];
   };
   bundles."8.18" = {
     coqPackages.coq.override.version = "8.18";

@@ -8,24 +8,16 @@ with lib; mkCoqDerivation {
   domain = "github.com";
 
   inherit version;
-## The `defaultVersion` attribute is important for nixpkgs but can be kept unchanged
-## for local usage since it will be ignored locally if
-## - this derivation corresponds to the main attribute,
-## - or its version is overridden (by a branch, PR, url or path) in `.nix/config.nix`.
-  defaultVersion = with versions; switch coq.coq-version [
-    ## Example of possible dependencies
-    # { case = range "8.13" "8.14"; out = "1.2.0"; }
-    ## other predicates are `isLe v`, `isLt v`, `isGe v`, `isGt v`, `isEq v` etc
+  defaultVersion = with versions; switch [coq.coq-version metacoq.version] [
+    { cases = ["8.17" "1.3.1-8.17"]; out = "0.1.0"; }
+    { cases = ["8.18" "1.3.1-8.18"]; out = "0.1.0"; }
+    { cases = ["8.19" "1.3.1-8.19"]; out = "0.1.0"; }
   ] null;
 
-  ## Declare existing releases
-  ## leave sha256 empty at first and then copy paste
-  ## the resulting sha given by the error message
-  # release."1.1.1".sha256 = "";
-  ## if the tag is not exactly the version number you can amend like this
-  # release."1.1.1".rev = "v1.1.1";
-  ## if a consistent scheme gives the tag from the release number, you can do like this:
-  # releaseRev = v: "v${v}";
+  release."0.1.0".sha256 = "+Of/DP2Vjsa7ASKswjlvqqhcmDhC9WrozridedNZQkY=";
+  release."0.1.0".rev = "v0.1.0";
+
+  releaseRev = v: "v${v}";
 
   propagatedBuildInputs = [ coq.ocamlPackages.findlib metacoq ];
 

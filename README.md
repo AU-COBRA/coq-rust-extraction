@@ -42,3 +42,9 @@ opam install . --deps-only
 make #or make -j <number-of-cores-on-your-machine> 
 make install
 ```
+
+## Documentation
+
+For documentation see [examples](/tests/theories/) and [generated CoqDoc](https://au-cobra.github.io/coq-rust-extraction/).
+
+Additional examples can be found in [ConCert](https://github.com/AU-COBRA/ConCert).

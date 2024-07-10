@@ -11,7 +11,7 @@ license: "MIT"
 homepage: "https://github.com/AU-COBRA/coq-rust-extraction"
 dev-repo: "git+https://github.com/AU-COBRA/coq-rust-extraction.git"
 bug-reports: "https://github.com/AU-COBRA/coq-rust-extraction/issues"
-doc: "https://au-cobra.github.io/ConCert/toc.html"
+doc: "https://au-cobra.github.io/coq-rust-extraction/toc.html"
 
 depends: [
   "coq" {>= "8.17" & < "8.20~"}
@@ -31,4 +31,10 @@ build: [
 install: [
   [make "install"]
   [make "-C" "tests" "install"] {with-test}
+]
+
+tags: [
+  "keyword:rust"
+  "keyword:extraction"
+  "logpath:RustExtraction"
 ]

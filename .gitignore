@@ -1,5 +1,9 @@
 .hidden
 *.tmp
+.DS_Store
+
+# Nix outputs
+result
 
 ##Coq
 *.vo
@@ -36,6 +40,7 @@ docs/
 _opam/
 .merlin
 META.*
+META
 
 .coq-native/
 .csdp.cache

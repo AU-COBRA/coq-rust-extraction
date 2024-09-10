@@ -4,7 +4,7 @@
   ## unless you made an automated or manual update
   ## to another supported format.
 
-  attribute = "rust-extraction";
+  attribute = "RustExtraction";
 
   default-bundle = "8.17";
 

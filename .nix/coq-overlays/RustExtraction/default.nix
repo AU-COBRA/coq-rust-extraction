@@ -2,7 +2,7 @@
   , metacoq, version ? null }:
 
 with lib; mkCoqDerivation {
-  pname = "rust-extraction";
+  pname = "RustExtraction";
   repo = "coq-rust-extraction";
   owner = "AU-COBRA";
   domain = "github.com";

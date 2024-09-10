@@ -4,7 +4,7 @@
   ## unless you made an automated or manual update
   ## to another supported format.
 
-  attribute = "rust-extraction";
+  attribute = "RustExtraction";
 
   default-bundle = "8.17";
 
@@ -18,7 +18,7 @@
   };
   bundles."8.19" = {
     coqPackages.coq.override.version = "8.19";
-    coqPackages.metacoq.override.version = "1.3.1-8.19";
+    coqPackages.metacoq.override.version = "1.3.2-8.19";
   };
 
   ## Cachix caches to use in CI

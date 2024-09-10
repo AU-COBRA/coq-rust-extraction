@@ -5,7 +5,7 @@ authors = ["Cobra"]
 edition = "2018"
 
 [dependencies]
-bumpalo = "3.5.0"
+bumpalo = "3.14.0"
 
 [profile.release]
 # Tell `rustc` to optimize for small code size.

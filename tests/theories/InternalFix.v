@@ -35,5 +35,5 @@ Definition even_odd (n : nat) : bool := even n.
 From RustExtraction Require Import ExtrRustBasic.
 From RustExtraction Require Import ExtrRustUncheckedArith.
 
-Redirect "extracted-code/Ack.rs" Rust Extract ack.
-Redirect "extracted-code/Even.rs" Rust Extract even.
+Redirect "Ack.rs" Rust Extract ack.
+Redirect "Even.rs" Rust Extract even.

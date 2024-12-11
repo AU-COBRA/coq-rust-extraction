@@ -46,4 +46,4 @@ Extract Constant shiftr => "fn ##name##(&'a self, a: i64, b: i64) -> i64 { a >> 
 
 From RustExtraction Require Import ExtrRustBasic.
 From RustExtraction Require Import ExtrRustUncheckedArith.
-Redirect "extracted-code/BernsteinYangTermination.rs" Rust Extract W.
+Redirect "BernsteinYangTermination.rs" Rust Extract W.

@@ -41,20 +41,20 @@ jobs:
     - id: stepCheck
       name: Checking presence of CI target RustExtraction
       run: "nb_dry_run=$(NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr\
-        \ bundle \"8.18\" --argstr job \"RustExtraction\" \\\n   --dry-run 2>&1 >\
+        \ bundle \"8.20\" --argstr job \"RustExtraction\" \\\n   --dry-run 2>&1 >\
         \ /dev/null)\necho $nb_dry_run\necho status=$(echo $nb_dry_run | grep \"built:\"\
         \ | sed \"s/.*/built/\") >> $GITHUB_OUTPUT\n"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "coq"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "metacoq"
     - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "RustExtraction"
   coq:
     needs: []
@@ -96,12 +96,12 @@ jobs:
     - id: stepCheck
       name: Checking presence of CI target coq
       run: "nb_dry_run=$(NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr\
-        \ bundle \"8.18\" --argstr job \"coq\" \\\n   --dry-run 2>&1 > /dev/null)\n\
+        \ bundle \"8.20\" --argstr job \"coq\" \\\n   --dry-run 2>&1 > /dev/null)\n\
         echo $nb_dry_run\necho status=$(echo $nb_dry_run | grep \"built:\" | sed \"\
         s/.*/built/\") >> $GITHUB_OUTPUT\n"
     - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "coq"
   metacoq:
     needs:
@@ -144,45 +144,45 @@ jobs:
     - id: stepCheck
       name: Checking presence of CI target metacoq
       run: "nb_dry_run=$(NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link \\\n   --argstr\
-        \ bundle \"8.18\" --argstr job \"metacoq\" \\\n   --dry-run 2>&1 > /dev/null)\n\
+        \ bundle \"8.20\" --argstr job \"metacoq\" \\\n   --dry-run 2>&1 > /dev/null)\n\
         echo $nb_dry_run\necho status=$(echo $nb_dry_run | grep \"built:\" | sed \"\
         s/.*/built/\") >> $GITHUB_OUTPUT\n"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "coq"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: equations'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "equations"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-template-coq'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "metacoq-template-coq"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-pcuic'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "metacoq-pcuic"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-safechecker'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "metacoq-safechecker"
     - if: steps.stepCheck.outputs.status == 'built'
       name: 'Building/fetching previous CI target: metacoq-erasure'
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "metacoq-erasure"
     - if: steps.stepCheck.outputs.status == 'built'
       name: Building/fetching current CI target
-      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.18" --argstr
+      run: NIXPKGS_ALLOW_UNFREE=1 nix-build --no-out-link --argstr bundle "8.20" --argstr
         job "metacoq"
-name: Nix CI for bundle 8.18
+name: Nix CI for bundle 8.20
 'on':
   pull_request:
     paths:
-    - .github/workflows/nix-action-8.18.yml
+    - .github/workflows/nix-action-8.20.yml
   pull_request_target:
     paths-ignore:
-    - .github/workflows/nix-action-8.18.yml
+    - .github/workflows/nix-action-8.20.yml
     - '**.md'
     - '**.gitignore'
     - '**.opam'

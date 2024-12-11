@@ -24,6 +24,7 @@ Definition to_globref (t : Ast.term) : option global_reference :=
   | _ => None
   end.
 
+#[warnings="-non-reversible-notation"]
 Notation "<! t !>" :=
   (ltac:(let p y :=
              let e := eval cbv in (to_globref y) in

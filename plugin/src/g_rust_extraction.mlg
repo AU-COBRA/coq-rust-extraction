@@ -69,7 +69,7 @@ let remap_inductive ind =
 
         (* For custom matches for some reason the interface takes an array of
          * ml_branch where it then only uses the name... *)
-        let lookup_key = [| ([], Miniml.Pusual (GlobRef.ConstructRef (ip, 0)), Miniml.MLaxiom) |] in
+        let lookup_key = [| ([], Miniml.Pusual (GlobRef.ConstructRef (ip, 0)), Miniml.MLaxiom "") |] in
         let custom_match =
           if Table.is_custom_match lookup_key then
             Some (bytestring_of_string (Table.find_custom_match lookup_key))
@@ -118,4 +118,3 @@ VERNAC COMMAND EXTEND RustExtract CLASSIFIED AS QUERY
     check env evm c
   }
 END
-

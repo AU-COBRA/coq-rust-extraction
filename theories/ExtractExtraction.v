@@ -49,10 +49,10 @@ bytestrings from MetaCoq that leads to clashes. E.g. we cannot use
    Feedback.msg_debug (Pp.str (Printf.sprintf ""%s executed in: %fs"" ((fun s-> (String.concat """" (List.map (String.make 1) s))) c) time));
               temp)". *)
 
-Cd "plugin/src".
+#[local]
+Set Extraction Output Directory "plugin/src".
 Separate Extraction PluginExtract.extract
          (* The following directives ensure separate extraction does not produce name clashes *)
           Bool Nat Coq.Strings.String bytestring.String RustExtraction.Common TemplateMonad.Common utils ELiftSubst EGlobalEnv Common.Transform ResultMonad.
-Cd "../..".
 
 (* Definition . *)

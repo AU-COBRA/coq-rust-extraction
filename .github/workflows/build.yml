@@ -1,5 +1,6 @@
 name: Build
 on:
+  workflow_dispatch:
   push:
     branches:
     - 'master'
@@ -22,8 +23,8 @@ concurrency:
 permissions:
   contents: read
 env:
-  OCAML_COMILER_VERSION: "4.13.1"
-  JOBS: 2
+  OCAML_COMILER_VERSION: "4.14.2"
+  JOBS: 4
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -117,12 +118,12 @@ jobs:
       - name: Test extraction
         run: |
           echo "::group::Running tests"
-          make -j2 -C tests test-extraction
+          make -j${{ env.JOBS }} -C tests test-extraction
           echo "::endgroup::"
 
           echo "::group::Cleaning up"
-          make -j2 -C tests clean-extraction-out-files
-          make -j2 -C tests clean-compiled-extraction
+          make -j${{ env.JOBS }} -C tests clean-extraction-out-files
+          make -j${{ env.JOBS }} -C tests clean-compiled-extraction
           echo "::endgroup::"
 
   deploy-docs:

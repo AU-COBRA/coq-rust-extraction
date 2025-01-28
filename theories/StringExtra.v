@@ -1,10 +1,12 @@
 From Coq Require Import Ascii.
 From Coq Require Import List.
 From Coq Require Import NArith.
-From Coq Require Import String.
+From Coq.Strings Require Import Byte.
+From MetaCoq.Utils Require Import bytestring.
 
+Import String.
 Import ListNotations.
-Local Open Scope string.
+Local Open Scope bs_scope.
 
 Definition str_rev (s : string) : string :=
   (fix f s acc :=
@@ -78,19 +80,19 @@ Definition string_of_N (n : N) : string :=
      let (q, r) := N.div_eucl num 10 in
      let char :=
          match r with
-         | 0 => "0"
-         | 1 => "1"
-         | 2 => "2"
-         | 3 => "3"
-         | 4 => "4"
-         | 5 => "5"
-         | 6 => "6"
-         | 7 => "7"
-         | 8 => "8"
-         | 9 => "9"
-         | _ => "x" (* unreachable *)
-         end%char in
-     let acc := String char acc in
+         | 0 => String "0"
+         | 1 => String "1"
+         | 2 => String "2"
+         | 3 => String "3"
+         | 4 => String "4"
+         | 5 => String "5"
+         | 6 => String "6"
+         | 7 => String "7"
+         | 8 => String "8"
+         | 9 => String "9"
+         | _ => String "x" (* unreachable *)
+         end in
+     let acc := char acc in
      if q =? 0 then
        acc
      else
@@ -112,21 +114,21 @@ Definition string_of_Z (z : Z) : string :=
   | Zneg p => String "-" (string_of_positive p)
   end.
 
-Definition replace_char (orig : ascii) (new : ascii) : string -> string :=
+Definition replace_char (orig : byte) (new : byte) : string -> string :=
   fix f s :=
     match s with
     | EmptyString => EmptyString
-    | String c s => if (c =? orig)%char then
+    | String c s => if (c =? orig)%byte then
                       String new (f s)
                     else
                       String c (f s)
     end.
 
-Definition remove_char (c : ascii) : string -> string :=
+Definition remove_char (c : byte) : string -> string :=
   fix f s :=
     match s with
     | EmptyString => EmptyString
-    | String c' s => if (c' =? c)%char then
+    | String c' s => if (c' =? c)%byte then
                        f s
                      else
                        String c' (f s)
@@ -136,7 +138,7 @@ Local Open Scope char.
 (** Structurally recursive starts_with with continuation from
    rest of string if it does start with *)
 Definition starts_with_cont
-         (with_char : ascii)
+         (with_char : byte)
          (with_str : string)
          {A}
          (cont : string -> A)
@@ -146,7 +148,7 @@ Definition starts_with_cont
      match s with
      | EmptyString => None
      | String sc s =>
-       if sc =? c then
+       if (sc =? c)%byte then
          match ws with
          | EmptyString => Some (cont s)
          | String wsc ws => f s wsc ws
@@ -192,19 +194,19 @@ Fixpoint substring_count (count : nat) (s : string) : string :=
   | S n, EmptyString => EmptyString
   end.
 
-Definition str_map (f : ascii -> ascii) : string -> string :=
+Definition str_map (f : byte -> byte) : string -> string :=
   fix g s :=
     match s with
     | EmptyString => EmptyString
-    | String c s => String c (g s)
+    | String c s => String (f c) (g s)
     end.
 
-Definition last_index_of (c : ascii) (s : string) : option nat :=
+Definition last_index_of (c : byte) (s : string) : option nat :=
   (fix f (s : string) (index : nat) (result : option nat) :=
      match s with
      | EmptyString => result
      | String c' s =>
-       if c' =? c then
+       if (c' =? c)%byte then
          f s (S index) (Some index)
        else
          f s (S index) result
@@ -212,26 +214,22 @@ Definition last_index_of (c : ascii) (s : string) : option nat :=
 
 Local Open Scope N.
 
-Definition is_letter (c : ascii) : bool :=
-  let n := N_of_ascii c in
+Definition is_letter (c : byte) : bool :=
+  let n := to_N c in
   (65 (* A *) <=? n) && (n <=? 90 (* Z *)) ||
   (97 (* a *) <=? n) && (n <=? 122 (* z *))%bool%N.
 
-Definition char_to_upper (c : ascii) : ascii :=
+Definition char_to_upper (c : byte) : byte :=
   if is_letter c then
-    match c with
-    | Ascii b0 b1 b2 b3 b4 b5 b6 b7 =>
-      Ascii b0 b1 b2 b3 b4 false b6 b7
-    end
+    let '(b0, (b1, (b2, (b3, (b4, (b5, (b6, b7))))))) := Byte.to_bits c in
+    Byte.of_bits (b0, (b1, (b2, (b3, (b4, (false, (b6, b7)))))))
   else
     c.
 
-Definition char_to_lower (c : ascii) : ascii :=
+Definition char_to_lower (c : byte) : byte :=
   if is_letter c then
-    match c with
-    | Ascii b0 b1 b2 b3 b4 b5 b6 b7 =>
-      Ascii b0 b1 b2 b3 b4 true b6 b7
-    end
+    let '(b0, (b1, (b2, (b3, (b4, (b5, (b6, b7))))))) := Byte.to_bits c in
+    Byte.of_bits (b0, (b1, (b2, (b3, (b4, (true, (b6, b7)))))))
   else
     c.
 
@@ -268,7 +266,7 @@ Definition str_split (on : string) : string -> list string :=
   end.
 
 Definition lines (l : list string) :=
-  String.concat (String (ascii_of_nat 10) "") l.
+  String.concat (String x0a "") l.
 
 Notation "<$ x ; y ; .. ; z $>" :=
-  (lines (List.cons x (List.cons y .. (List.cons z List.nil) ..))) : string_scope.
+  (lines (List.cons x (List.cons y .. (List.cons z List.nil) ..))) : bs_scope.

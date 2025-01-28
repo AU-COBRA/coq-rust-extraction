@@ -1,4 +1,3 @@
-From Coq Require Import String.
 From MetaCoq.Erasure.Typed Require Import ResultMonad.
 From MetaCoq.Erasure.Typed Require Import Utils.
 From MetaCoq.Template Require Import Ast.
@@ -8,12 +7,15 @@ From MetaCoq.Template Require Import Loader.
 From MetaCoq.Template Require Import TemplateMonad.
 From MetaCoq.Template Require Import Typing.
 From MetaCoq.Utils Require Import utils.
+From MetaCoq.Utils Require Import bytestring.
 From MetaCoq.Erasure Require EAst.
 From MetaCoq.SafeChecker Require Import PCUICSafeChecker.
 From MetaCoq.SafeChecker Require Import PCUICWfEnvImpl.
+From Coq.Strings Require Import Byte.
 
 Import PCUICErrors.
 Import MCMonadNotation.
+Import String.
 
 
 Definition to_globref (t : Ast.term) : option global_reference :=
@@ -56,7 +58,7 @@ Definition extract_def_name_exists {A : Type} (a : A) : TemplateMonad kername :=
 Notation "'unfolded' d" :=
   ltac:(let y := eval unfold d in d in exact y) (at level 100, only parsing).
 
-Definition remap (kn : kername) (new_name : String.string) : kername * String.string :=
+Definition remap (kn : kername) (new_name : string) : kername * string :=
   (kn, new_name).
 
 Definition quote_recursively_body {A : Type} (def : A) : TemplateMonad program :=
@@ -172,24 +174,22 @@ Definition Z_syn_to_Z (t : EAst.term) : option Z :=
   | _ => None
   end.
 
-(* TODO: port the pretty-printers to use bytestring and use metacoq's MCString utils *)
-
-Definition parens (top : bool) (s : String.string) : String.string :=
+Definition parens (top : bool) (s : string) : string :=
   if top then s else "(" ++ s ++ ")".
 
-Definition nl : String.string := String (Ascii.ascii_of_nat 10) EmptyString.
+Definition nl : string := String x0a EmptyString.
 
-Definition string_of_list_aux {A} (f : A -> String.string) (sep : String.string) (l : list A) : String.string :=
+Definition string_of_list_aux {A} (f : A -> string) (sep : string) (l : list A) : string :=
   let fix aux l :=
-      match l return String.string with
-      | nil => ""%string
+      match l return string with
+      | nil => ""
       | cons a nil => f a
-      | cons a l => (f a ++ sep ++ aux l)%string
+      | cons a l => (f a ++ sep ++ aux l)
       end
   in aux l.
 
-Definition string_of_list {A} (f : A -> String.string) (l : list A) : String.string :=
-  ("[" ++ string_of_list_aux f "," l ++ "]")%string.
+Definition string_of_list {A} (f : A -> string) (l : list A) : string :=
+  ("[" ++ string_of_list_aux f "," l ++ "]").
 
-Definition print_list {A} (f : A -> String.string) (sep : String.string) (l : list A) : String.string :=
+Definition print_list {A} (f : A -> string) (sep : string) (l : list A) : string :=
   string_of_list_aux f sep l.

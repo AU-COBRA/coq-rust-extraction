@@ -11,11 +11,10 @@ From MetaCoq.Common Require Import Kernames.
 From MetaCoq.Utils Require Import monad_utils.
 From Coq Require Import List.
 From Coq Require Import String.
+From MetaCoq.Utils Require Import bytestring.
 
 Import ListNotations.
 Import MCMonadNotation.
-
-Open Scope string.
 
 Local Instance plugin_extract_preamble : Preamble :=
 {| top_preamble := [
@@ -145,7 +144,7 @@ Definition extract_lines
   entry <- match snd p with
            | T.tConst kn _ => ret kn
            | T.tInd ind _ => ret (inductive_mind ind)
-           | _ => Err (s_to_bs "Expected program to be a tConst or tInd")
+           | _ => Err "Expected program to be a tConst or tInd"
            end;;
   let without_deps kn :=
       if remap_inductive remaps (mkInd kn 0) then true else
@@ -157,8 +156,8 @@ Definition extract_lines
          (KernameSet.singleton entry)
          without_deps;;
   let p := print_program Σ remaps default_attrs in
-  '(_, s) <- timed "Printing" (fun _ => map_error (fun x => s_to_bs x) (finish_print_lines p));;
-  Ok (map s_to_bs s).
+  '(_, s) <- timed "Printing"%string (fun _ => (finish_print_lines p));;
+  Ok s.
 
 Definition extract p remaps should_inline :=
   lines <- extract_lines p remaps should_inline;;

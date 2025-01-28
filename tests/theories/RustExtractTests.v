@@ -7,11 +7,13 @@ From RustExtraction Require Import StringExtra.
 From MetaCoq.Template Require Import Ast.
 From MetaCoq.Common Require Import Kernames.
 From MetaCoq.Utils Require Import utils.
-From Coq Require Import String.
+From MetaCoq.Utils Require Import bytestring.
+
 
 Import PrettyPrinterMonad.
 Import MCMonadNotation.
-Local Open Scope string.
+Local Open Scope bs_scope.
+
 
 Local Instance RustConfig : RustPrintConfig :=
   {| term_box_symbol := "()";
@@ -25,7 +27,7 @@ Definition extract (p : program) : result _ _ :=
   entry <- match p.2 with
            | T.tConst kn _ => ret kn
            | T.tInd ind _ => ret (inductive_mind ind)
-           | _ => Err (s_to_bs "Expected program to be a tConst or tInd")
+           | _ => Err "Expected program to be a tConst or tInd"
            end;;
   Σ <- extract_template_env
          (extract_rust_within_coq (fun _ => None) (fun _ => false))
@@ -47,7 +49,7 @@ Definition extract (p : program) : result _ _ :=
       append_nl;;
       print_decls Σ no_remaps default_attrs (filter is_const (List.rev Σ));;
       ret tt in
-  '(_, s) <- map_error (fun x => s_to_bs x) (finish_print p);;
+  '(_, s) <- (finish_print p);;
   ret s.
 
 Module ex1.
@@ -324,7 +326,7 @@ Module SafeHead.
   Qed.
 
   MetaCoq Run (p <- Core.tmQuoteRecTransp (@head_of_repeat_plus_one) false;;
-               Core.tmDefinition (s_to_bs "Prog") p).
+               Core.tmDefinition "Prog" p).
 
   Example test :
     extract Prog = Ok <$

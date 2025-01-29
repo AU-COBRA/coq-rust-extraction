@@ -18,11 +18,11 @@
   };
   bundles."8.19" = {
     coqPackages.coq.override.version = "8.19";
-    coqPackages.metacoq.override.version = "1.3.2-8.19";
+    coqPackages.metacoq.override.version = "1.3.3-8.19";
   }; */
   bundles."8.20" = {
     coqPackages.coq.override.version = "8.20";
-    coqPackages.metacoq.override.version = "1.3.2-8.20";
+    coqPackages.metacoq.override.version = "1.3.4-8.20";
   };
 
   ## Cachix caches to use in CI

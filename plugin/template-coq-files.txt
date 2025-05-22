@@ -1,5 +1,7 @@
 signature.mli
 signature.ml
+sint63Axioms.ml
+sint63Axioms.mli
 classes0.mli
 classes0.ml
 eqDec.mli
@@ -65,6 +67,8 @@ uint0.ml
 uint0.mli
 int0.ml
 int0.mli
+intDef.ml
+intDef.mli
 sumbool.mli
 sumbool.ml
 zeven.mli
@@ -83,6 +87,8 @@ liftSubst.ml
 liftSubst.mli
 list0.ml
 list0.mli
+listDef.ml
+listDef.mli
 logic0.ml
 logic0.mli
 logic1.mli
@@ -127,6 +133,8 @@ mSetProperties.ml
 mSetProperties.mli
 nat0.ml
 nat0.mli
+natDef.ml
+natDef.mli
 number.ml
 number.mli
 ordersFacts.ml
@@ -161,6 +169,8 @@ eqDecInstances.mli
 eqDecInstances.ml
 reflect.mli
 reflect.ml
+posDef.ml
+posDef.mli
 pretty.ml
 pretty.mli
 reification.ml
@@ -171,6 +181,8 @@ specif.ml
 specif.mli
 string0.ml
 string0.mli
+show.ml
+show.mli
 byte0.mli
 byte0.ml
 byte.mli
@@ -187,6 +199,8 @@ caml_bytestring.ml
 tm_util.ml
 kernames.mli
 kernames.ml
+uint63Axioms.ml
+uint63Axioms.mli
 universes0.ml
 universes0.mli
 termEquality.mli

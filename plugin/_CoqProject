@@ -86,10 +86,6 @@ src/prettyPrinterMonad.ml
 src/prettyPrinterMonad.mli
 src/printing.ml
 src/printing.mli
-src/primString.ml
-src/primString.mli
-src/primStringAxioms.ml
-src/primStringAxioms.mli
 src/resultMonad.ml
 src/resultMonad.mli
 src/rustExtract.ml

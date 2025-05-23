@@ -8,7 +8,7 @@ theory: CoqMakefile
 	+@make -f CoqMakefile
 .PHONY: theory
 
-plugin: theory
+plugin: theory configure-extr
 	+make -C plugin
 .PHONY: plugin
 
@@ -22,6 +22,8 @@ clean: CoqMakefile
 	+@make -C plugin clean
 	+@make -C tests clean
 	rm -rf docs
+	rm -f plugin/theories/ExtrRustUncheckedArith.v
+	rm -f plugin/theories/ExtrRustCheckedArith.v
 .PHONY: clean
 
 install: CoqMakefile

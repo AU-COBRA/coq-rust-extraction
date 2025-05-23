@@ -15,7 +15,7 @@ A framework for extracting Coq programs to Rust.
   - Bas Spitters (initial)
   - Eske Hoy Nielsen
 - License: [MIT](LICENSE)
-- Compatible Coq versions: 8.17 or later
+- Compatible Coq versions: 8.20 or later
 - Additional dependencies: MetaCoq
 - Coq namespace: `RustExtraction`
 - Related publication(s):
@@ -39,7 +39,7 @@ opam repo add coq-released https://coq.inria.fr/opam/released
 git clone https://github.com/AU-COBRA/coq-rust-extraction.git
 cd coq-rust-extraction
 opam install . --deps-only
-make #or make -j <number-of-cores-on-your-machine> 
+make #or make -j <number-of-cores-on-your-machine>
 make install
 ```
 

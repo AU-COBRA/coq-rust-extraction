@@ -1,3 +1,7 @@
+# TODO: remove once 8.20 support is removed.
+-arg -w -arg -deprecated-from-Coq
+-arg -w -arg -deprecated-dirpath-Coq
+
 -Q ../theories RustExtraction
 
 -Q theories RustExtraction
@@ -82,10 +86,6 @@ src/prettyPrinterMonad.ml
 src/prettyPrinterMonad.mli
 src/printing.ml
 src/printing.mli
-src/primString.ml
-src/primString.mli
-src/primStringAxioms.ml
-src/primStringAxioms.mli
 src/resultMonad.ml
 src/resultMonad.mli
 src/rustExtract.ml
@@ -94,8 +94,6 @@ src/pluginExtract.ml
 src/pluginExtract.mli
 src/erasureFunction.ml
 src/erasureFunction.mli
-src/show.ml
-src/show.mli
 src/ssrbool.ml
 src/ssrbool.mli
 src/stringExtra.ml

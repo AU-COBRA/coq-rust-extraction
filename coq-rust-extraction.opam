@@ -30,7 +30,6 @@ build: [
 ]
 install: [
   [make "install"]
-  [make "-C" "tests" "install"] {with-test}
 ]
 
 tags: [

@@ -54,7 +54,7 @@ Extract Constant Corelib.BinNums.IntDef.Z.opp => "fn ##name##(&'a self, a: i64) 
 Extract Constant Corelib.BinNums.IntDef.Z.min => "fn ##name##(&'a self, a: i64, b: i64) -> i64 { std::cmp::min(a, b) }".
 Extract Constant Corelib.BinNums.IntDef.Z.max => "fn ##name##(&'a self, a: i64, b: i64) -> i64 { std::cmp::max(a, b) }".
 Extract Constant Corelib.BinNums.IntDef.Z.eqb => "fn ##name##(&'a self, a: i64, b: i64) -> bool { a == b }".
-(* TODO: div and modulo are nontrivial since Coq rounds towards negative infinity *)
+(* TODO: div and modulo are nontrivial since Rocq rounds towards negative infinity *)
 (*Extract ConstanBinIntDef.t Z.div => "fn ##name##(a: i64, b: i64) -> i64 { a.checked_div(b).unwrap_or(0) }".
 Extract Constant BinIntDef.Z.modulo => "fn ##name##(a: i64, b: i64) -> i64 { a.checked_rem(b).unwrap_or(a) }".*)
 Extract Constant Corelib.BinNums.IntDef.Z.compare =>

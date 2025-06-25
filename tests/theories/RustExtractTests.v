@@ -1,17 +1,17 @@
 (** * Tests for extraction to Rust *)
-From MetaCoq.Erasure.Typed Require Import Extraction.
-From MetaCoq.Erasure.Typed Require Import ResultMonad.
+From MetaRocq.Erasure.Typed Require Import Extraction.
+From MetaRocq.Erasure.Typed Require Import ResultMonad.
 From RustExtraction Require Import RustExtract.
 From RustExtraction Require Import Printing.
 From RustExtraction Require Import StringExtra.
-From MetaCoq.Template Require Import Ast.
-From MetaCoq.Common Require Import Kernames.
-From MetaCoq.Utils Require Import utils.
-From MetaCoq.Utils Require Import bytestring.
+From MetaRocq.Template Require Import Ast.
+From MetaRocq.Common Require Import Kernames.
+From MetaRocq.Utils Require Import utils.
+From MetaRocq.Utils Require Import bytestring.
 
 
 Import PrettyPrinterMonad.
-Import MCMonadNotation.
+Import MRMonadNotation.
 Local Open Scope bs_scope.
 
 
@@ -30,7 +30,7 @@ Definition extract (p : program) : result _ _ :=
            | _ => Err "Expected program to be a tConst or tInd"
            end;;
   Σ <- extract_template_env
-         (extract_rust_within_coq (fun _ => None) (fun _ => false))
+         (extract_rust_within_rocq (fun _ => None) (fun _ => false))
          p.1
          (KernameSet.singleton entry)
          (fun k => false);;
@@ -55,7 +55,7 @@ Definition extract (p : program) : result _ _ :=
 Module ex1.
   Definition foo : { n : nat | n = 0 } := exist 0 eq_refl.
   Definition bar := proj1_sig foo.
-  MetaCoq Quote Recursively Definition ex1 := bar.
+  MetaRocq Quote Recursively Definition ex1 := bar.
 
   Example ex1_test :
     extract ex1 = Ok <$
@@ -104,7 +104,7 @@ Module ex2.
   Definition only_in_type := 5.
   Definition foo : { n : nat | only_in_type = 5 } := exist 0 eq_refl.
   Definition bar := proj1_sig foo.
-  MetaCoq Quote Recursively Definition ex2 := bar.
+  MetaRocq Quote Recursively Definition ex2 := bar.
   Example ex2_test :
     extract ex2 = Ok <$
     "#[derive(Debug, Clone)]";
@@ -149,7 +149,7 @@ Module ex2.
 End ex2.
 
 Module ex3.
-  MetaCoq Quote Recursively Definition quoted := plus.
+  MetaRocq Quote Recursively Definition quoted := plus.
 
   Example test :
     extract quoted = Ok <$
@@ -198,7 +198,7 @@ Module ex4.
              in ackn m
     end.
 
-  MetaCoq Quote Recursively Definition quoted := ack.
+  MetaRocq Quote Recursively Definition quoted := ack.
 
   Example test :
     extract quoted = Ok <$
@@ -263,7 +263,7 @@ Module ex5.
     | eq_refl => f
     end.
 
-  MetaCoq Quote Recursively Definition quoted := code.
+  MetaRocq Quote Recursively Definition quoted := code.
 
   Example test :
     extract quoted = Ok <$
@@ -325,7 +325,7 @@ Module SafeHead.
     intros. cbn. lia.
   Qed.
 
-  MetaCoq Run (p <- Core.tmQuoteRecTransp (@head_of_repeat_plus_one) false;;
+  MetaRocq Run (p <- Core.tmQuoteRecTransp (@head_of_repeat_plus_one) false;;
                Core.tmDefinition "Prog" p).
 
   Example test :

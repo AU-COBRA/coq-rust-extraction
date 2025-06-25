@@ -1,11 +1,11 @@
-From MetaCoq.Utils Require Import monad_utils.
-From MetaCoq.Utils Require Import MCList.
-From MetaCoq.Utils Require Import bytestring.
-From MetaCoq.Erasure.Typed Require Import ExAst.
-From MetaCoq.Erasure.Typed Require Import Extraction.
-From MetaCoq.Erasure.Typed Require Import CertifyingInlining.
-From MetaCoq.Erasure.Typed Require Import Optimize.
-From MetaCoq.Erasure.Typed Require Import ResultMonad.
+From MetaRocq.Utils Require Import monad_utils.
+From MetaRocq.Utils Require Import MRList.
+From MetaRocq.Utils Require Import bytestring.
+From MetaRocq.Erasure.Typed Require Import ExAst.
+From MetaRocq.Erasure.Typed Require Import Extraction.
+From MetaRocq.Erasure.Typed Require Import CertifyingInlining.
+From MetaRocq.Erasure.Typed Require Import Optimize.
+From MetaRocq.Erasure.Typed Require Import ResultMonad.
 From Stdlib Require Import PeanoNat.
 From Stdlib Require Import List.
 From Stdlib.Program Require Import Basics.
@@ -14,16 +14,16 @@ From RustExtraction Require Import TopLevelFixes.
 From RustExtraction Require Import StringExtra.
 From RustExtraction Require Import PrettyPrinterMonad.
 
-Module P := MetaCoq.PCUIC.PCUICAst.
-Module PT := MetaCoq.PCUIC.PCUICTyping.
-Module T2P := MetaCoq.TemplatePCUIC.TemplateToPCUIC.
-Module E := MetaCoq.Erasure.EAst.
-Module T := MetaCoq.Template.Ast.
-Module TUtil := MetaCoq.Template.AstUtils.
-Module EF := MetaCoq.Erasure.ErasureFunction.
-Module Ex := MetaCoq.Erasure.Typed.ExAst.
+Module P := MetaRocq.PCUIC.PCUICAst.
+Module PT := MetaRocq.PCUIC.PCUICTyping.
+Module T2P := MetaRocq.TemplatePCUIC.TemplateToPCUIC.
+Module E := MetaRocq.Erasure.EAst.
+Module T := MetaRocq.Template.Ast.
+Module TUtil := MetaRocq.Template.AstUtils.
+Module EF := MetaRocq.Erasure.ErasureFunction.
+Module Ex := MetaRocq.Erasure.Typed.ExAst.
 
-Import MCMonadNotation.
+Import MRMonadNotation.
 
 Open Scope bs_scope.
 
@@ -156,7 +156,7 @@ Definition fresh (name : ident) (used : list ident) : ident :=
        match n with
        | 0 => "unreachable"
        | S n =>
-         let numbered_name := bytestring.String.append name (MCString.string_of_nat i) in
+         let numbered_name := bytestring.String.append name (MRString.string_of_nat i) in
          if existsb (bytestring.String.eqb numbered_name) used then
            f n (S i)
          else
@@ -353,7 +353,7 @@ Section print_term.
          (fix print_branch (bctx : list name) (args : list ident) (Γ : list ident) {struct bctx} :=
             match bctx with
             | [] =>
-              (* In Coq, parameters are not part of branches. But
+              (* In Rocq, parameters are not part of branches. But
             erasure adds the parameters to each constructor, so we
             need to get those out of the way first. These won't have
             any uses so we just print _. In addition, we add a phantom
@@ -594,7 +594,7 @@ Fixpoint print_term (Γ : list ident) (t : term) {struct t} : PrettyPrinter unit
     printer_fail ("unhandled tProj on " ^ (string_of_kername (inductive_mind ind)))
 
   | tCoFix _ _ => printer_fail "Cannot handle tCoFix yet"
-  | tPrim _ => printer_fail "Cannot handle Coq primitive types yet"
+  | tPrim _ => printer_fail "Cannot handle Rocq primitive types yet"
   | tLazy _ => printer_fail "Cannot handle lazy yet"
   | tForce _ => printer_fail "Cannot handle force yet"
   end.
@@ -882,7 +882,7 @@ Definition print_program : PrettyPrinter unit :=
 
   (* Finally print all constants *)
   const_names <- print_decls_aux
-                   (map (MCProd.on_snd Ex.ConstantDecl) constants)
+                   (map (MRProd.on_snd Ex.ConstantDecl) constants)
                    (append_nl;; append_nl);;
 
   append_nl;;
@@ -891,7 +891,7 @@ Definition print_program : PrettyPrinter unit :=
   pop_indent.
 End FixEnv.
 
-Definition extract_rust_within_coq
+Definition extract_rust_within_rocq
            (overridden_masks : Kernames.kername -> option bitmask)
            (should_inline : Kernames.kername -> bool) : extract_template_env_params :=
   {| check_wf_env_func := check_wf_env_func extract_within_coq;

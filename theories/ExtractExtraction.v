@@ -1,5 +1,5 @@
 (* This file is based on erasure/theories/Extraction.v from MetaCoq *)
-From Coq Require Import Ascii FSets ExtrOcamlBasic ExtrOCamlFloats ExtrOCamlInt63.
+From Stdlib Require Import Ascii FSets ExtrOcamlBasic ExtrOCamlFloats ExtrOCamlInt63.
 From MetaCoq.Utils Require Import utils.
 
 (* Ignore [Decimal.int] before the extraction issue is solved:
@@ -51,8 +51,9 @@ bytestrings from MetaCoq that leads to clashes. E.g. we cannot use
 
 #[local]
 Set Extraction Output Directory "plugin/src".
+#[warnings="-extraction-axiom-to-realize"]
 Separate Extraction PluginExtract.extract
          (* The following directives ensure separate extraction does not produce name clashes *)
-          Bool Nat Coq.Strings.String bytestring.String RustExtraction.Common TemplateMonad.Common utils ELiftSubst EGlobalEnv Common.Transform ResultMonad.
+          Bool Nat Stdlib.Strings.String bytestring.String RustExtraction.Common TemplateMonad.Common utils ELiftSubst EGlobalEnv Common.Transform ResultMonad.
 
 (* Definition . *)

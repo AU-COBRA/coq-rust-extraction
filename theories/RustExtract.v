@@ -6,9 +6,9 @@ From MetaCoq.Erasure.Typed Require Import Extraction.
 From MetaCoq.Erasure.Typed Require Import CertifyingInlining.
 From MetaCoq.Erasure.Typed Require Import Optimize.
 From MetaCoq.Erasure.Typed Require Import ResultMonad.
-From Coq Require Import PeanoNat.
-From Coq Require Import List.
-From Coq.Program Require Import Basics.
+From Stdlib Require Import PeanoNat.
+From Stdlib Require Import List.
+From Stdlib.Program Require Import Basics.
 From RustExtraction Require Import Printing.
 From RustExtraction Require Import TopLevelFixes.
 From RustExtraction Require Import StringExtra.

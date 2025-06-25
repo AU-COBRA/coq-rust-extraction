@@ -1,8 +1,8 @@
 (* This implements an optimization that changes top level fixpoints to use
    tConst instead. For example, the environment [("Foo", tFix [{| dbody := tRel 0 |}] 0)]
    is instead changed into something like [("Foo", tConst "Foo")]. *)
-From Coq Require Import List.
-From Coq Require Import String.
+From Stdlib Require Import List.
+From Stdlib Require Import String.
 From MetaCoq.Erasure.Typed Require Import ExAst.
 From MetaCoq.Erasure.Typed Require Import ResultMonad.
 From MetaCoq.Erasure.Typed Require Import Transform.

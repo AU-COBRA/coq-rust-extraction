@@ -1,7 +1,7 @@
 -Q ../theories RustExtraction
 
 -Q theories RustExtraction
--generate-meta-for-package coq-rust-extraction
+-generate-meta-for-package rocq-rust-extraction
 -I src
 
 src/certifyingBeta.ml
@@ -44,8 +44,8 @@ src/fin.ml
 src/fin.mli
 src/init0.ml
 src/init0.mli
-src/mCProd.ml
-src/mCProd.mli
+src/mRProd.ml
+src/mRProd.mli
 src/optimize.ml
 src/optimize.mli
 src/optimizePropDiscr.ml

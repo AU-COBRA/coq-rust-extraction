@@ -39,7 +39,7 @@ jobs:
         with:
           ocaml-compiler: ${{env.OCAML_COMILER_VERSION}}
           opam-repositories: |
-            coq-released: https://coq.inria.fr/opam/released
+            rocq-released: https://rocq-prover.org/opam/released
             default: https://opam.ocaml.org
           opam-pin: false
 
@@ -61,7 +61,7 @@ jobs:
       - name: Set up environment
         run: |
           echo "::group::Setting up problem matcher"
-          echo "::add-matcher::./.github/coq-errors.json"
+          echo "::add-matcher::./.github/rocq-errors.json"
           echo "::endgroup::"
 
       - name: Build core
@@ -90,7 +90,7 @@ jobs:
       - name: Build documentation
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: |
-          echo "::group::Running coqdoc"
+          echo "::group::Running rocqdoc"
           opam exec -- make -j${{ env.JOBS }} html
           echo "::endgroup::"
 

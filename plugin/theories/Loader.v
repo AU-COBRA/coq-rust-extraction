@@ -1,6 +1,6 @@
 From Stdlib Require Extraction.
-From MetaCoq.Template Require ExtractableLoader.
+From MetaRocq.Template Require ExtractableLoader.
 
 (* Declare ML Module "extraction_plugin". *)
-(* Declare ML Module "coq-metacoq-template-coq.plugin". *)
-Declare ML Module "coq-rust-extraction.plugin".
+(* Declare ML Module "rocq-metarocq-template-rocq.plugin". *)
+Declare ML Module "rocq-rust-extraction.plugin".

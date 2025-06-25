@@ -1,5 +1,5 @@
-From Coq Require Import Extraction.
-From Coq Require Import ZArith.
+From Stdlib Require Import Extraction.
+From Stdlib Require Import ZArith.
 
 Extract Inductive nat => "u64" ["0" "__nat_succ"] "__nat_elim!".
 Extract Inductive positive => "u64" ["__pos_onebit" "__pos_zerobit" "1"] "__pos_elim!".

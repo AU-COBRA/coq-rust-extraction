@@ -11,7 +11,7 @@ From MetaCoq.Utils Require Import bytestring.
 From MetaCoq.Erasure Require EAst.
 From MetaCoq.SafeChecker Require Import PCUICSafeChecker.
 From MetaCoq.SafeChecker Require Import PCUICWfEnvImpl.
-From Coq.Strings Require Import Byte.
+From Stdlib.Strings Require Import Byte.
 
 Import PCUICErrors.
 Import MCMonadNotation.

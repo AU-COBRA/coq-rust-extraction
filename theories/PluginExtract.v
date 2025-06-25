@@ -9,8 +9,8 @@ From RustExtraction Require Import Printing.
 From RustExtraction Require Import RustExtract.
 From MetaCoq.Common Require Import Kernames.
 From MetaCoq.Utils Require Import monad_utils.
-From Coq Require Import List.
-From Coq Require Import String.
+From Stdlib Require Import List.
+From Stdlib Require Import String.
 From MetaCoq.Utils Require Import bytestring.
 
 Import ListNotations.

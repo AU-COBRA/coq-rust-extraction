@@ -70,7 +70,3 @@ nra.cache
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
-# workaround
-plugin/theories/ExtrRustUncheckedArith.v
-plugin/theories/ExtrRustCheckedArith.v

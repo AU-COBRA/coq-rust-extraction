@@ -81,7 +81,7 @@ jobs:
           echo "::endgroup::"
 
       - name: Upload extraction results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: extraction-results
           path: tests/extracted-code

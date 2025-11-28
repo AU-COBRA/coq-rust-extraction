@@ -1,4 +1,4 @@
-From Coq Require Import Extraction.
+From Stdlib Require Import Extraction.
 
 Extract Inductive bool => "bool" ["true" "false"].
 Extract Inductive option => "Option" ["Some" "None"].

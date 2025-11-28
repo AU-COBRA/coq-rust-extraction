@@ -1,9 +1,9 @@
-(* This file is based on erasure/theories/Extraction.v from MetaCoq *)
-From Coq Require Import Ascii FSets ExtrOcamlBasic ExtrOCamlFloats ExtrOCamlInt63.
-From MetaCoq.Utils Require Import utils.
+(* This file is based on erasure/theories/Extraction.v from MetaRocq *)
+From Stdlib Require Import Ascii FSets ExtrOcamlBasic ExtrOCamlFloats ExtrOCamlInt63.
+From MetaRocq.Utils Require Import utils.
 
 (* Ignore [Decimal.int] before the extraction issue is solved:
-    https://github.com/coq/coq/issues/7017. *)
+    https://github.com/rocq-prover/rocq/issues/7017. *)
 Extract Inductive Decimal.int => unit [ "(fun _ -> ())" "(fun _ -> ())" ] "(fun _ _ _ -> assert false)".
 Extract Inductive Hexadecimal.int => unit [ "(fun _ -> ())" "(fun _ -> ())" ] "(fun _ _ _ -> assert false)".
 Extract Inductive Number.int => unit [ "(fun _ -> ())" "(fun _ -> ())" ] "(fun _ _ _ -> assert false)".
@@ -16,9 +16,9 @@ Extraction Blacklist
 Set Warnings "-extraction-opaque-accessed".
 Set Warnings "-extraction-reserved-identifier".
 
-From MetaCoq.Erasure Require Import EAst EAstUtils EInduction ELiftSubst EGlobalEnv Extract ErasureFunction Erasure.
+From MetaRocq.Erasure Require Import EAst EAstUtils EInduction ELiftSubst EGlobalEnv Extract ErasureFunction Erasure.
 From RustExtraction Require Import PluginExtract.
-From MetaCoq.Erasure.Typed Require Import Utils.
+From MetaRocq.Erasure.Typed Require Import Utils.
 
 
 Extraction Inline Equations.Prop.Classes.noConfusion.
@@ -37,8 +37,8 @@ Extract Inductive Equations.Init.sigma => "( * )" ["(,)"].
 Extract Constant PCUICTyping.guard_checking => "{ fix_guard = (fun _ _ _ -> true); cofix_guard = (fun _ _ _ -> true) }".
 Extract Constant PCUICSafeChecker.check_one_ind_body => "(fun _ _ _ _ _ _ _ -> ret envcheck_monad __)".
 
-(* FIXME: commented out for now, since we use both Coq's strings and
-bytestrings from MetaCoq that leads to clashes. E.g. we cannot use
+(* FIXME: commented out for now, since we use both Rocq's strings and
+bytestrings from MetaRocq that leads to clashes. E.g. we cannot use
 [ExtrOcamlString]. *)
 
 (* Extract Constant timed =>
@@ -51,8 +51,9 @@ bytestrings from MetaCoq that leads to clashes. E.g. we cannot use
 
 #[local]
 Set Extraction Output Directory "plugin/src".
+#[warnings="-extraction-axiom-to-realize"]
 Separate Extraction PluginExtract.extract
          (* The following directives ensure separate extraction does not produce name clashes *)
-          Bool Nat Coq.Strings.String bytestring.String RustExtraction.Common TemplateMonad.Common utils ELiftSubst EGlobalEnv Common.Transform ResultMonad.
+          Bool Nat Stdlib.Strings.String bytestring.String RustExtraction.Common TemplateMonad.Common utils ELiftSubst EGlobalEnv Common.Transform ResultMonad.
 
 (* Definition . *)

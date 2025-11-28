@@ -1,14 +1,14 @@
 (* This implements an optimization that changes top level fixpoints to use
    tConst instead. For example, the environment [("Foo", tFix [{| dbody := tRel 0 |}] 0)]
    is instead changed into something like [("Foo", tConst "Foo")]. *)
-From Coq Require Import List.
-From Coq Require Import String.
-From MetaCoq.Erasure.Typed Require Import ExAst.
-From MetaCoq.Erasure.Typed Require Import ResultMonad.
-From MetaCoq.Erasure.Typed Require Import Transform.
-From MetaCoq.Erasure.Typed Require Import Utils.
-From MetaCoq.Erasure Require Import ELiftSubst.
-From MetaCoq.Utils Require Import utils.
+From Stdlib Require Import List.
+From Stdlib Require Import String.
+From MetaRocq.Erasure.Typed Require Import ExAst.
+From MetaRocq.Erasure.Typed Require Import ResultMonad.
+From MetaRocq.Erasure.Typed Require Import Transform.
+From MetaRocq.Erasure.Typed Require Import Utils.
+From MetaRocq.Erasure Require Import ELiftSubst.
+From MetaRocq.Utils Require Import utils.
 
 Import ListNotations.
 
@@ -17,7 +17,7 @@ Local Open Scope erasure.
 Fixpoint optimize_aux (t : term) (kn : Kernames.kername) (lams : nat) :=
   match t with
   | tLambda na body => tLambda na (optimize_aux body kn (S lams))
-  | tFix [def] 0 => (dbody def){0 := mkApps (tConst kn) (MCList.rev_map tRel (seq 0 lams))}
+  | tFix [def] 0 => (dbody def){0 := mkApps (tConst kn) (MRList.rev_map tRel (seq 0 lams))}
   | _ => t
   end.
 

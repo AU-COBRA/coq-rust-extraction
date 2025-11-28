@@ -5,7 +5,7 @@
 # Nix outputs
 result
 
-##Coq
+##Rocq
 *.vo
 *.vok
 *.vos
@@ -13,9 +13,13 @@ result
 *.v.d
 *~
 CoqMakefile
+RocqMakefile
 CoqMakefile.conf
+RocqMakefile.conf
 Makefile.coq
+Makefile.rocq
 Makefile.coq.conf
+Makefile.rocq.conf
 *.a
 *.cma
 *.cmi
@@ -43,6 +47,7 @@ META.*
 META
 
 .coq-native/
+.rocq-native/
 .csdp.cache
 .lia.cache
 .nia.cache
@@ -70,7 +75,3 @@ nra.cache
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
-# workaround
-plugin/theories/ExtrRustUncheckedArith.v
-plugin/theories/ExtrRustCheckedArith.v

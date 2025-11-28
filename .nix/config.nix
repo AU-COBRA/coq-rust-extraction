@@ -6,21 +6,26 @@
 
   attribute = "RustExtraction";
 
-  default-bundle = "8.20";
+  no-rocq-yet = true;
 
-  bundles."8.20" = {
-    coqPackages.coq.override.version = "8.20";
-    coqPackages.metacoq.override.version = "1.3.4-8.20";
-  };
+  default-bundle = "9.0";
+
   bundles."9.0" = {
-    coqPackages.coq.override.version = "9.0";
-    coqPackages.metacoq.override.version = "1.3.4-9.0";
+    coqPackages = {
+      coq.override.version = "9.0.1";
+      metarocq.override.version = "1.4-9.0.1";
+    };
+    rocqPackages = {
+      rocq-core.override.version = "9.0.1";
+    };
   };
+
+  bundles."9.0".push-branches = ["master"];
 
   ## Cachix caches to use in CI
   cachix.coq = {};
   cachix.coq-community = {};
-  cachix.metacoq = {};
+  cachix.metarocq = {};
 
   cachix.au-cobra.authToken = "CACHIX_AUTH_TOKEN";
 }

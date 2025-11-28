@@ -1,20 +1,20 @@
-From MetaCoq.Erasure.Typed Require Import ResultMonad.
-From MetaCoq.Erasure.Typed Require Import Utils.
-From MetaCoq.Template Require Import Ast.
-From MetaCoq.Template Require Import LiftSubst.
-From MetaCoq.Template Require Import AstUtils.
-From MetaCoq.Template Require Import Loader.
-From MetaCoq.Template Require Import TemplateMonad.
-From MetaCoq.Template Require Import Typing.
-From MetaCoq.Utils Require Import utils.
-From MetaCoq.Utils Require Import bytestring.
-From MetaCoq.Erasure Require EAst.
-From MetaCoq.SafeChecker Require Import PCUICSafeChecker.
-From MetaCoq.SafeChecker Require Import PCUICWfEnvImpl.
-From Coq.Strings Require Import Byte.
+From MetaRocq.Erasure.Typed Require Import ResultMonad.
+From MetaRocq.Erasure.Typed Require Import Utils.
+From MetaRocq.Template Require Import Ast.
+From MetaRocq.Template Require Import LiftSubst.
+From MetaRocq.Template Require Import AstUtils.
+From MetaRocq.Template Require Import Loader.
+From MetaRocq.Template Require Import TemplateMonad.
+From MetaRocq.Template Require Import Typing.
+From MetaRocq.Utils Require Import utils.
+From MetaRocq.Utils Require Import bytestring.
+From MetaRocq.Erasure Require EAst.
+From MetaRocq.SafeChecker Require Import PCUICSafeChecker.
+From MetaRocq.SafeChecker Require Import PCUICWfEnvImpl.
+From Stdlib.Strings Require Import Byte.
 
 Import PCUICErrors.
-Import MCMonadNotation.
+Import MRMonadNotation.
 Import String.
 
 

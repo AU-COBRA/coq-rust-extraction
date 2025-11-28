@@ -1,20 +1,20 @@
 (** * Definitions below are used in the extracted plugin *)
 
-From MetaCoq.Erasure.Typed Require Import ExAst.
-From MetaCoq.Erasure.Typed Require Import Extraction.
-From MetaCoq.Erasure.Typed Require Import ResultMonad.
-From MetaCoq.Erasure.Typed Require Import Utils.
+From MetaRocq.Erasure.Typed Require Import ExAst.
+From MetaRocq.Erasure.Typed Require Import Extraction.
+From MetaRocq.Erasure.Typed Require Import ResultMonad.
+From MetaRocq.Erasure.Typed Require Import Utils.
 From RustExtraction Require Import PrettyPrinterMonad.
 From RustExtraction Require Import Printing.
 From RustExtraction Require Import RustExtract.
-From MetaCoq.Common Require Import Kernames.
-From MetaCoq.Utils Require Import monad_utils.
-From Coq Require Import List.
-From Coq Require Import String.
-From MetaCoq.Utils Require Import bytestring.
+From MetaRocq.Common Require Import Kernames.
+From MetaRocq.Utils Require Import monad_utils.
+From Stdlib Require Import List.
+From Stdlib Require Import String.
+From MetaRocq.Utils Require Import bytestring.
 
 Import ListNotations.
-Import MCMonadNotation.
+Import MRMonadNotation.
 
 Local Instance plugin_extract_preamble : Preamble :=
 {| top_preamble := [
@@ -151,7 +151,7 @@ Definition extract_lines
       if remap_constant remaps kn then true else
       if remap_inline_constant remaps kn then true else false in
   Σ <- extract_template_env
-         (extract_rust_within_coq (fun _ => None) should_inline)
+         (extract_rust_within_rocq (fun _ => None) should_inline)
          (fst p)
          (KernameSet.singleton entry)
          without_deps;;
@@ -161,4 +161,4 @@ Definition extract_lines
 
 Definition extract p remaps should_inline :=
   lines <- extract_lines p remaps should_inline;;
-  ret (bytestring.String.concat MCString.nl lines).
+  ret (bytestring.String.concat MRString.nl lines).

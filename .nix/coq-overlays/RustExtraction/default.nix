@@ -1,5 +1,5 @@
 { lib, mkCoqDerivation, which, coq
-  , metacoq, version ? null }:
+  , metarocq, version ? null }:
 
 with lib; mkCoqDerivation {
   pname = "RustExtraction";
@@ -8,7 +8,7 @@ with lib; mkCoqDerivation {
   domain = "github.com";
 
   inherit version;
-  defaultVersion = with versions; switch [coq.coq-version metacoq.version] [
+  defaultVersion = with versions; switch [coq.coq-version metarocq.version] [
     { cases = [(range "8.17" "8.19") (range "1.3.1" "1.3.3")]; out = "0.1.0"; }
     { cases = [(range "8.20" "9.0") (range "1.3.2" "1.3.4")]; out = "0.1.1"; }
   ] null;
@@ -18,7 +18,7 @@ with lib; mkCoqDerivation {
 
   releaseRev = v: "v${v}";
 
-  propagatedBuildInputs = [ coq.ocamlPackages.findlib metacoq ];
+  propagatedBuildInputs = [ coq.ocamlPackages.findlib metarocq ];
 
   postPatch = ''
     patchShebangs ./process_extraction.sh
@@ -28,7 +28,7 @@ with lib; mkCoqDerivation {
   mlPlugin = true;
 
   meta = {
-    description = "A framework for extracting Coq programs to Rust";
+    description = "A framework for extracting Rocq programs to Rust";
     maintainers = with maintainers; [ _4ever2 ];
     license = licenses.mit;
   };

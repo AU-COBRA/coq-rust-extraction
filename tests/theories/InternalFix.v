@@ -1,10 +1,10 @@
 (** Examples of (mutual) nested fixpoints *)
 From RustExtraction Require Import Loader.
-From Coq Require Import Arith.
-From Coq Require Import Bool.
-From Coq Require Import Extraction.
-From Coq Require Import List.
-From Coq Require Import Program.
+From Stdlib Require Import Arith.
+From Stdlib Require Import Bool.
+From Stdlib Require Import Extraction.
+From Stdlib Require Import List.
+From Stdlib Require Import Program.
 
 
 Fixpoint ack (n m : nat) : nat :=

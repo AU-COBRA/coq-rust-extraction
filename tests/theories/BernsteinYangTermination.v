@@ -1,8 +1,8 @@
 (* Computation needed to show termination of the Bernstein-Yang modular inversion algorithm *)
 
 From RustExtraction Require Import Loader.
-From Coq Require Import Bool.
-From Coq Require Import ZArith.
+From Stdlib Require Import Bool.
+From Stdlib Require Import ZArith.
 
 Import Z.
 Local Open Scope Z.

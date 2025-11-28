@@ -1,6 +1,6 @@
-COQ_SRC_SUBDIRS+=user-contrib/MetaCoq/Template
-CAMLPKGS+=-package coq-metacoq-template-ocaml.plugin,coq-core.plugins.extraction
-CAMLFLAGS+=-open Metacoq_template_plugin
+COQ_SRC_SUBDIRS+=user-contrib/MetaRocq/Template
+CAMLPKGS+=-package rocq-metarocq-template-ocaml.plugin,coq-core.plugins.extraction
+CAMLFLAGS+=-open Metarocq_template_plugin
 CAMLFLAGS+=-w -20 # Unused arguments
 CAMLFLAGS+=-w -32 # Unused values
 CAMLFLAGS+=-w -33 # Unused opens

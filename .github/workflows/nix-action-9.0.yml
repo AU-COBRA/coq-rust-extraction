@@ -33,7 +33,7 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixpkgs-unstable
     - name: Cachix setup au-cobra
-      uses: cachix/cachix-action@v16
+      uses: cachix/cachix-action@v17
       with:
         authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
         extraPullNames: coq, coq-community, metarocq
@@ -96,7 +96,7 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixpkgs-unstable
     - name: Cachix setup au-cobra
-      uses: cachix/cachix-action@v16
+      uses: cachix/cachix-action@v17
       with:
         authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
         extraPullNames: coq, coq-community, metarocq
@@ -155,7 +155,7 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixpkgs-unstable
     - name: Cachix setup au-cobra
-      uses: cachix/cachix-action@v16
+      uses: cachix/cachix-action@v17
       with:
         authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
         extraPullNames: coq, coq-community, metarocq
@@ -233,7 +233,7 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixpkgs-unstable
     - name: Cachix setup au-cobra
-      uses: cachix/cachix-action@v16
+      uses: cachix/cachix-action@v17
       with:
         authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
         extraPullNames: coq, coq-community, metarocq
